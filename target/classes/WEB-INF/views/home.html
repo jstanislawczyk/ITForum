@@ -2,11 +2,59 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 	<head>
 		<meta charset="UTF-8" />
-		<title>ITForum homepage</title>		 
-		<link rel="stylesheet" type="text/css" th:href="@{/styles/style.css}" />
+		<title>ITForum</title>		 
+		<link rel="stylesheet" type="text/css" th:href="@{/styles/style.css}" ></link>
+		<link href="https://fonts.googleapis.com/css?family=Lato:400,700&amp;subset=latin-ext" rel="stylesheet">
 	</head>
 	
 	<body>
-		<h1>Hello</h1>
+		<div>
+			<div class="banner">
+				<a class="title" th:href="@{/}">ITForum</a>
+				<div class="bannerButtons"><a th:href="@{/register}">Register</a></div>
+				<div class="bannerButtons"><a th:href="@{/login}">Login</a></div>
+				<div style="clear: both;"></div>
+			</div>
+			
+			<div class="main">
+				<div class="menu">
+					<div class="littleBanner">
+						<span class="littleTitle">Categories</span>	
+					</div>
+					<div class="categories">
+						
+					</div>
+				</div>
+			</div>
+			
+			<div class="infoSection">
+				<div class="info">
+					<div class="about">
+						<h2>About us</h2>
+						<span>
+							Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut 
+							labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris 
+							nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit 
+							esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in 
+							culpa qui officia deserunt mollit anim id est laborum.
+						</span>
+					</div>
+					<div class="about">
+						<h2>Statistics</h2>
+						<p>
+							Total members: todo
+						</p>
+						<p>
+							Total posts: todo
+						</p>
+					</div>		
+				</div>
+			</div>
+			
+			<div class="footer">
+				<span class="footerText"><a th:href="@{/contact}">Contact us</a></span>
+				<span class="footerText"><a th:href="@{/rules}">Rules</a></span>
+			</div>
+		</div>
 	</body>
 </html>
