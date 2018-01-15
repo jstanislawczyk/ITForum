@@ -39,6 +39,12 @@ public class User {
 	
 	@OneToMany(mappedBy = "user")
 	private List<ForumPost> posts;
+	
+	@NotNull
+	private String role;
+	
+	@NotNull
+	private boolean enabled;
 
 	public Long getId() {
 		return id;
@@ -96,4 +102,19 @@ public class User {
 		this.posts = posts;
 	}
 
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+
+	public boolean isEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
+	}
 }
