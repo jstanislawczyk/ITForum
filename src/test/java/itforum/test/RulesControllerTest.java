@@ -14,6 +14,6 @@ public class RulesControllerTest {
 	public void testRulesPage() throws Exception {
 		RulesController rulesController = new RulesController();
 		MockMvc mockMvc = standaloneSetup(rulesController).build();
-		mockMvc.perform(get("/rules")).andExpect(view().name("rulesView"));
+		mockMvc.perform(get("/rules")).andExpect(view().name("rulesPage"));
 	}
 }

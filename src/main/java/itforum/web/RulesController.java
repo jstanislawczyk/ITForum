@@ -11,6 +11,6 @@ public class RulesController {
 	
 	@RequestMapping(method = GET)
 	public String rules(){
-		return "rulesView";
+		return "rulesPage";
 	}
 }
