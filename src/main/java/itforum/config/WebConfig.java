@@ -7,6 +7,7 @@ import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.thymeleaf.spring4.SpringTemplateEngine;
 import org.thymeleaf.spring4.templateresolver.SpringResourceTemplateResolver;
@@ -22,6 +23,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 	public ViewResolver viewResolver(SpringTemplateEngine templateEngine) {
 		ThymeleafViewResolver viewResolver = new ThymeleafViewResolver();
 		viewResolver.setTemplateEngine(templateEngine);
+		viewResolver.setCharacterEncoding("UTF-8");
 		return viewResolver;
 	}
 	
@@ -31,6 +33,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 		resolver.setPrefix("/WEB-INF/views/");
 		resolver.setSuffix(".html");
 		resolver.setTemplateMode("HTML5");
+		resolver.setCharacterEncoding("UTF-8");
 		return resolver;
 	}
 	
@@ -46,10 +49,15 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 		configurer.enable();
 	}	
 	
-	 @Override
+	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 	    registry
 	    	.addResourceHandler("/styles/**")
 	        .addResourceLocations("/styles/"); 
+	}
+	 
+	@Override
+	public void addViewControllers(ViewControllerRegistry registry) {
+		registry.addViewController("/login").setViewName("loginPage");
 	}
 }
