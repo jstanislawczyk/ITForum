@@ -18,18 +18,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	
 	protected void configure(HttpSecurity http) throws Exception{
 		http
-			    /*.formLogin()
-			    	.loginPage("/login")
-				.and()*/
+			.formLogin()
+			    .loginPage("/login")
+			.and()
 			.httpBasic()
 				.realmName("ITForum")
 			.and()
 			.logout()
 				.logoutSuccessUrl("/")
 			.and()	
-			/*.rememberMe()
+			.rememberMe()
 				.tokenValiditySeconds(10)
-			.and()*/
+			.and()
 			.authorizeRequests() 
 					.antMatchers("/rules").hasAnyAuthority("USER", "ADMIN")
 					.anyRequest().permitAll()
@@ -41,13 +41,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	
 	@Autowired
 	public void configureAuthentication(AuthenticationManagerBuilder auth) throws Exception {
-	  /*auth.inMemoryAuthentication()
-	  	.withUser("user").password("123456").roles("USER")
-	  	.and()
-	  	.withUser("admin").password("admin").roles("ADMIN")
-	  	.and()
-	  	.withUser("dba").password("123456").roles("DBA");*/
-		
 		auth.jdbcAuthentication()
 			.dataSource(dataSource)
 			.usersByUsernameQuery(
