@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8" />
+		<title>Profile</title>		 
+		<link rel="stylesheet" type="text/css" th:href="@{/styles/style.css}" ></link>
+		<link href="https://fonts.googleapis.com/css?family=Lato:400,700&amp;subset=latin-ext" rel="stylesheet">
+	</head>
+	
+	<body>
+		<div>
+			<div class="banner">
+				<a class="title" th:href="@{/}">ITForum</a>
+				<div class="bannerButtons"><a th:href="@{/register}">Register</a></div>
+				<div class="bannerButtons"><a th:href="@{/login}">Login</a></div>
+				<div style="clear: both;"></div>
+			</div>
+			
+			<div class="footer">
+				<span class="footerText"><a th:href="@{/contact}">Contact us</a></span>
+				<span class="footerText"><a th:href="@{/rules}">Rules</a></span>
+			</div>
+		</div>
+	</body>
+</html>
