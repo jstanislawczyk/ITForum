@@ -1,9 +1,13 @@
 package itforum.repositories;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-
 import itforum.entities.User;
 
-public interface UserRepository extends JpaRepository<User, Long>{
 
+public interface UserRepository{
+	 User getUserById(Long id);
+	 User getUserByNick(String nick);
+	 User getUserByEmail(String email);
+	 boolean isNickAvailable(String nick);
+	 boolean isEmailAvailable(String email);
+	 void saveUser(User user);
 }

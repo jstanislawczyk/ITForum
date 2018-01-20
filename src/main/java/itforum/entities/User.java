@@ -9,8 +9,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
+
 
 @Entity
 public class User {
@@ -20,31 +23,31 @@ public class User {
 	private Long id;
 	
 	@NotNull
-	@Size(min = 5, max = 40, message="{nick.size}")
+	@Size(min = 5, max = 40, message="Nick must contain {min} to {max} letters")
 	private String nick;
 	
 	@NotNull
-	@Size(min = 7, max = 40, message="{password.size}")
+	@Size(min = 7, message="Password must contain at least {min} letters")
 	private String password;
 	
+	@Email(message = "Wrong email")
 	@NotNull
-	@Email(message="{email.valid}")
+	@NotBlank(message="Wrong email")
 	private String email;
 	
-	@NotNull
 	private Timestamp date;
-	
-	@NotNull
 	private int points;
+	private String role;
+	private boolean enabled;
 	
 	@OneToMany(mappedBy = "user")
 	private List<ForumPost> posts;
-	
-	@NotNull
-	private String role;
-	
-	@NotNull
-	private boolean enabled;
+
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", nick=" + nick + ", password=" + password + ", email=" + email + ", date=" + date
+				+ ", points=" + points + ", role=" + role + ", enabled=" + enabled + "]";
+	}
 
 	public Long getId() {
 		return id;
