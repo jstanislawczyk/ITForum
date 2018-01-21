@@ -134,6 +134,15 @@ body{
 	-moz-box-shadow: 3px 3px 30px 5px rgba(204,204,204,0.9);
 	box-shadow: 3px 3px 30px 5px rgba(204,204,204,0.9);
 	margin-bottom: 30px;
+	text-align: center;
+}
+
+form{
+	margin-bottom: 10px;
+}
+
+.logoutSuccessful{
+	color: #51cc61;
 }
 
 .text

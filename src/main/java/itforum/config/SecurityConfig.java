@@ -28,7 +28,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 				.realmName("ITForum")
 			.and()
 			.logout()
-				.logoutSuccessUrl("/")
+				.logoutUrl("/logout")
+				.logoutSuccessUrl("/login")
 			.and()	
 			.rememberMe()
 				.tokenValiditySeconds(10)
@@ -37,7 +38,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 					.antMatchers("/rules").hasAnyAuthority("USER", "ADMIN")
 					.anyRequest().permitAll()
 			.and()		
-				.sessionManagement().sessionFixation().none();
+				.sessionManagement().sessionFixation().none()
+			.and()
+				.csrf();
 		} 
 	
 	@Autowired
