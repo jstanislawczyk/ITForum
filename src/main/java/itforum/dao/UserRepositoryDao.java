@@ -41,9 +41,9 @@ public class UserRepositoryDao implements UserRepository{
 
 	@Override
 	public boolean isNickAvailable(String nick) {
-		Long numberOfUsers = (Long) entityManager.createQuery("SELECT COUNT(*) from User u WHERE u.nick = :nick").setParameter("nick", nick).getSingleResult();	
-		System.out.println("users nick: "+numberOfUsers);
-		if(numberOfUsers==0){
+		Long numberOfUsersByNick = (Long) entityManager.createQuery("SELECT COUNT(*) from User u WHERE u.nick = :nick").setParameter("nick", nick).getSingleResult();	
+		System.out.println("users nick: "+numberOfUsersByNick);
+		if(numberOfUsersByNick==0){
 			return true;
 		}else{
 			return false;
@@ -53,12 +53,18 @@ public class UserRepositoryDao implements UserRepository{
 
 	@Override
 	public boolean isEmailAvailable(String email) {
-		Long numberOfUsers = (Long) entityManager.createQuery("SELECT COUNT(*) from User u WHERE u.email = :email").setParameter("email", email).getSingleResult();	
-		System.out.println("users: "+numberOfUsers);
-		if(numberOfUsers==0){
+		Long numberOfUsersByEmail = (Long) entityManager.createQuery("SELECT COUNT(*) from User u WHERE u.email = :email").setParameter("email", email).getSingleResult();	
+		System.out.println("users: "+numberOfUsersByEmail);
+		if(numberOfUsersByEmail==0){
 			return true;
 		}else{
 			return false;
 		}
+	}
+
+	@Override
+	public Long countUsers() {
+		Long numberOfUsers = (Long) entityManager.createQuery("SELECT COUNT(*) from User u").getSingleResult();
+		return numberOfUsers;
 	}
 }

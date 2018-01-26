@@ -2,7 +2,6 @@ package itforum.repositories;
 
 import itforum.entities.User;
 
-
 public interface UserRepository{
 	 User getUserById(Long id);
 	 User getUserByNick(String nick);
@@ -10,4 +9,5 @@ public interface UserRepository{
 	 boolean isNickAvailable(String nick);
 	 boolean isEmailAvailable(String email);
 	 void saveUser(User user);
+	 Long countUsers();
 }
