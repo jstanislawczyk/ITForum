@@ -145,6 +145,10 @@ form{
 	color: #51cc61;
 }
 
+.loginFailure{
+	color: #ee2f2f;
+}
+
 .text
 {
 	width: 300px;
@@ -196,6 +200,10 @@ form{
 	background-color: #4d4d4d;
 }
 
+#remember_me{
+	margin-top: 15px;
+}
+
 h1{
 	color: #999999;
 }
@@ -211,6 +219,15 @@ h4{
 a{
 	text-decoration: none;
 	color: #fff;
+}
+
+.button{
+	text-decoration: none;
+	color: #fff;
+	font-size: 18px;
+	background-color: #3c3c3c;
+	border-width: 0px;
+	cursor: pointer;
 }
 
 .errors{
@@ -245,3 +262,4 @@ a{
 .error:-moz-placeholder {
   color: #800000;;
 }
+

@@ -13,10 +13,13 @@
 		<div>
 			<div class="banner">
 				<a class="title" th:href="@{/}">ITForum</a>
-				<div class="bannerButtons"><a th:href="@{/register}">Register</a></div>
-				<div class="bannerButtons"><a th:href="@{/login}">Login</a></div>
-				<div class="bannerButtons"><a th:href="@{/logout}">Logout</a></div>
-				<div style="clear: both;"></div>
+				<div sec:authorize="isAnonymous()" class="bannerButtons"><a th:href="@{/register}">Register</a></div>
+				<div sec:authorize="isAnonymous()" class="bannerButtons"><a th:href="@{/login}">Login</a></div>
+				<div sec:authorize="isAuthenticated()" class="bannerButtons">
+					<form th:action="@{/logout}" method="post">
+    					<input class="button" type="submit" value="Logout">
+					</form>
+				</div>
 			</div>
 			
 			<div class="main">
@@ -45,10 +48,10 @@
 					<div class="about">
 						<h2>Statistics</h2>
 						<p>
-							Total members: todo
+							Total members: <span th:text="${totalMembers}"></span>
 						</p>
 						<p>
-							Total posts: todo
+							Total posts: <span th:text="${totalPosts}"></span>
 						</p>
 					</div>		
 				</div>
