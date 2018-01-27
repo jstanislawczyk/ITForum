@@ -1,6 +1,7 @@
 package itforum.dao;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 
@@ -27,9 +28,13 @@ public class UserRepositoryDao implements UserRepository{
 
 	@Override
 	public User getUserByNick(String nick){	
-			return entityManager.createQuery("SELECT u from User u WHERE u.nick = :nick", User.class)
+			try{
+				return entityManager.createQuery("SELECT u from User u WHERE u.nick = :nick", User.class)
 					.setParameter("nick", nick)
 					.getSingleResult();		
+			}catch(NoResultException nre){
+				return null;
+			}
 	}
 
 	@Override
@@ -41,8 +46,7 @@ public class UserRepositoryDao implements UserRepository{
 
 	@Override
 	public boolean isNickAvailable(String nick) {
-		Long numberOfUsersByNick = (Long) entityManager.createQuery("SELECT COUNT(*) from User u WHERE u.nick = :nick").setParameter("nick", nick).getSingleResult();	
-		System.out.println("users nick: "+numberOfUsersByNick);
+		Long numberOfUsersByNick = (Long) entityManager.createQuery("SELECT COUNT(*) from User u WHERE u.nick = :nick").setParameter("nick", nick).getSingleResult();
 		if(numberOfUsersByNick==0){
 			return true;
 		}else{
@@ -53,8 +57,7 @@ public class UserRepositoryDao implements UserRepository{
 
 	@Override
 	public boolean isEmailAvailable(String email) {
-		Long numberOfUsersByEmail = (Long) entityManager.createQuery("SELECT COUNT(*) from User u WHERE u.email = :email").setParameter("email", email).getSingleResult();	
-		System.out.println("users: "+numberOfUsersByEmail);
+		Long numberOfUsersByEmail = (Long) entityManager.createQuery("SELECT COUNT(*) from User u WHERE u.email = :email").setParameter("email", email).getSingleResult();
 		if(numberOfUsersByEmail==0){
 			return true;
 		}else{
