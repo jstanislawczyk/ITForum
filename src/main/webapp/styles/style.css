@@ -54,8 +54,30 @@ body{
 	border-bottom: 2px solid #cecece;
 	border-left: 2px solid #cecece;
 	width: 996px;
-	height: 300px;
 	background-color: #fff;
+}
+
+.category{
+	border-bottom: 1px solid #cecece;
+	padding-top: 5px;
+	padding-left: 10px;
+}
+
+.category a{
+	color: #000000;
+}
+
+.category a:hover{
+	color: #505050;
+}
+
+.categoryTitle{
+	font-size: 20px;
+}
+
+.categoryDescription{
+	font-size: 13px;
+	color: #7f7f7f;
 }
 
 .littleBanner{
@@ -141,11 +163,11 @@ form{
 	margin-bottom: 10px;
 }
 
-.logoutSuccessful{
+.success{
 	color: #51cc61;
 }
 
-.loginFailure{
+.failure{
 	color: #ee2f2f;
 }
 

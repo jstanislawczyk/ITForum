@@ -4,7 +4,7 @@
 	  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 	<head>
 		<meta charset="UTF-8" />
-		<title>ITForum login</title>		 
+		<title>ITForum registration</title>		 
 		<link rel="stylesheet" type="text/css" th:href="@{/styles/style.css}" ></link>
 		<link href="https://fonts.googleapis.com/css?family=Lato:400,700&amp;subset=latin-ext" rel="stylesheet">
 	</head>
@@ -13,29 +13,24 @@
 		<div>
 			<div class="banner">
 				<a class="title" th:href="@{/}">ITForum</a>
+				<div sec:authorize="hasAuthority('ADMIN')" class="bannerButtons"><a th:href="@{/admin}">Admin</a></div>
 				<div sec:authorize="isAnonymous()" class="bannerButtons"><a th:href="@{/register}">Register</a></div>
 				<div sec:authorize="isAnonymous()" class="bannerButtons"><a th:href="@{/login}">Login</a></div>
-				<div sec:authorize="isAuthenticated()" class="bannerButtons">
-					<form th:action="@{/logout}" method="post">
-    					<input class="button" type="submit" value="Logout">
-					</form>
-				</div>
 			</div>
 			
 			<div class="formSection">
 				<div class="form">
-					<form method="POST" th:action="@{/login}" name="f">
-						<input class="text" type="text" name="username" placeholder="nick"/>
-						<input class="text" type="password" name="password" placeholder="password"/>
-						<input class="submit" type="submit" value = "login"/>
-						
-						<input id="remember_me" name="remember-me" type="checkbox" />
-						<label for="remember_me" class="inline">Remember me</label>
+					<form method="POST" th:action="@{/admin/addNewCategory}" th:object="${forumCategory}">
+
+						<input type="text" th:field="*{title}" placeholder="title" th:class="${#fields.hasErrors('title')}? 'error' : 'text'"/>
+						<input type="text" th:field="*{description}" placeholder="description" th:class="${#fields.hasErrors('description')}? 'error' : 'text'"/>
+							
+						<input class="submit" type="submit" value = "Save category"/>
+							
+						<ul class="errors">
+							<li th:each="err : ${#fields.errors('*')}" th:text="${err}">Validation error</li>	
+						</ul>
 					</form>
-					
-					<span class="success" th:text="${logoutMessage}"></span>
-					<br />
-					<span class="failure" th:text="${failureMessage}"></span>
 				</div>
 			</div>
 		</div>

@@ -16,7 +16,8 @@ public class UserRepositoryDao implements UserRepository{
 
 	@PersistenceContext
 	private EntityManager entityManager;
-		
+	
+	@Override
 	public User getUserById(Long id){
 		return entityManager.find(User.class, id);
 	}

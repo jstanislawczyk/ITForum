@@ -20,7 +20,6 @@ public abstract class Post {
 	@Size(min = 10, max = 300, message="{content.size}")
 	private String content;
 	
-	@NotNull
 	private Timestamp date;
 	
 	public Long getId() {

@@ -13,6 +13,7 @@
 		<div>
 			<div class="banner">
 				<a class="title" th:href="@{/}">ITForum</a>
+				<div sec:authorize="hasAuthority('ADMIN')" class="bannerButtons"><a th:href="@{/admin}">Admin</a></div>
 				<div sec:authorize="isAnonymous()" class="bannerButtons"><a th:href="@{/register}">Register</a></div>
 				<div sec:authorize="isAnonymous()" class="bannerButtons"><a th:href="@{/login}">Login</a></div>
 				<div sec:authorize="isAuthenticated()" class="bannerButtons">
@@ -27,8 +28,13 @@
 					<div class="littleBanner">
 						<span class="littleTitle">Categories</span>	
 					</div>
-					<div class="categories">
-						
+					<div class="categories">		
+							<th:block th:each="category : ${categories}" >
+								<div class="category">
+							    	<a class="categoryLink" th:href="@{/category/}+${category.title}"><span class="categoryTitle" th:text="${category.title}"></span></a><br />
+							    	<span class="categoryDescription" th:text="${category.description}"></span><br /><br />
+							    </div>   				    	
+						    </th:block>	  
 					</div>
 				</div>
 			</div>

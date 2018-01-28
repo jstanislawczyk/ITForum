@@ -4,7 +4,7 @@
 	  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 	<head>
 		<meta charset="UTF-8" />
-		<title>Profile</title>		 
+		<title>ITForum registration</title>		 
 		<link rel="stylesheet" type="text/css" th:href="@{/styles/style.css}" ></link>
 		<link href="https://fonts.googleapis.com/css?family=Lato:400,700&amp;subset=latin-ext" rel="stylesheet">
 	</head>
@@ -14,16 +14,17 @@
 			<div class="banner">
 				<a class="title" th:href="@{/}">ITForum</a>
 				<div sec:authorize="hasAuthority('ADMIN')" class="bannerButtons"><a th:href="@{/admin}">Admin</a></div>
-				<div class="bannerButtons"><a th:href="@{/register}">Register</a></div>
-				<div class="bannerButtons"><a th:href="@{/login}">Login</a></div>
-				<div style="clear: both;"></div>
+				<div sec:authorize="isAuthenticated()" class="bannerButtons">
+					<form th:action="@{/logout}" method="post">
+    					<input class="button" type="submit" value="Logout">
+					</form>
+				</div>
 			</div>
 			
-			<span th:text="${user.nick}">Nazwa uzytkownika: </span>
-			
-			<div class="footer">
-				<span class="footerText"><a th:href="@{/contact}">Contact us</a></span>
-				<span class="footerText"><a th:href="@{/rules}">Rules</a></span>
+			<div class="adminMain">
+				<div class="adminPanel">
+					<div sec:authorize="hasAuthority('ADMIN')" class="adminButton"><a th:href="@{/admin/addNewCategory}">Add new category</a></div>
+				</div>
 			</div>
 		</div>
 	</body>

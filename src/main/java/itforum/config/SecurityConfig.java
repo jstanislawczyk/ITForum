@@ -37,7 +37,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 				.key("itforum")
 			.and()
 			.authorizeRequests() 
-					.antMatchers("/rules").hasAnyAuthority("USER", "ADMIN")
+					.antMatchers("/admin","/admin/addNewCategory").hasAuthority("ADMIN")
 					.anyRequest().permitAll()
 			.and()		
 				.sessionManagement().sessionFixation().none()
