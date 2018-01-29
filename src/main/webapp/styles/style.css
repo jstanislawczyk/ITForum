@@ -341,3 +341,38 @@ a{
 	font-size: 30px;
 }
 
+.posts{	
+	border-right: 2px solid #cecece;
+	border-bottom: 2px solid #cecece;
+	border-left: 2px solid #cecece;
+	width: 996px;
+	background-color: #fff;
+}
+
+.post{
+	border-bottom: 1px solid #cecece;
+	padding-top: 5px;
+	padding-left: 10px;
+}
+
+.post a{
+	color: #000000;
+}
+
+.post a:hover{
+	color: #505050;
+}
+
+.postTitle{
+	font-size: 20px;
+}
+
+.postContent{
+	font-size: 13px;
+	color: #7f7f7f;
+}
+
+.postDate{
+	font-size: 9px;
+	color: #7f7f7f;
+}

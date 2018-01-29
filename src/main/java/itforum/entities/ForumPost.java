@@ -19,11 +19,11 @@ public class ForumPost extends Post {
 	@ManyToOne
 	@JoinColumn(name = "idUser")
 	private User user;
-	
+
 	@ManyToOne
-	@JoinColumn(name= "idCategory")
+	@JoinColumn(name = "idCategory")
 	private ForumCategory category;
-	
+
 	@OneToMany(mappedBy = "post")
 	private List<PostComment> comments;
 
@@ -57,5 +57,11 @@ public class ForumPost extends Post {
 
 	public void setComments(List<PostComment> comments) {
 		this.comments = comments;
+	}
+
+	@Override
+	public String toString() {
+		return "ForumPost [id=" + getId() + ", title=" + title + ", content=" + getContent() + ", date=" + getDate()
+				+ ", user=" + user + ", category=" + category + ", comments=" + comments + "]";
 	}
 }

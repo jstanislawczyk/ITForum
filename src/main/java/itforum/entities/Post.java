@@ -17,7 +17,7 @@ public abstract class Post {
 	private Long id;
 	
 	@NotNull
-	@Size(min = 10, max = 300, message="{content.size}")
+	@Size(min = 10, max = 300, message="Content must contain {min} to {max} letters")
 	private String content;
 	
 	private Timestamp date;

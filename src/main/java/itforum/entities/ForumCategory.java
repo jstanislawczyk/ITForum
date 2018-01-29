@@ -57,4 +57,15 @@ public class ForumCategory {
 		return "ForumCategory [id=" + id + ", title=" + title + ", description=" + description + ", posts=" + posts
 				+ "]";
 	}
+
+	public ForumCategory(Long id, @NotNull @Size(min = 3, max = 70, message = "Title is to short") String title,
+			@NotNull @Size(min = 5, max = 100, message = "Description is to short") String description,
+			List<ForumPost> posts) {
+		this.id = id;
+		this.title = title;
+		this.description = description;
+		this.posts = posts;
+	}
+
+	public ForumCategory() {}
 }
