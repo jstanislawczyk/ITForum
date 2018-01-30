@@ -27,7 +27,7 @@
 					<div class="posts">		
 							<th:block th:each="post : ${posts}" >
 								<div class="post">
-							    	<a class="postLink" th:href="@{/category/post/}+${post.id}"><span class="postTitle" th:text="${post.title}"></span></a><br />
+							    	<a class="postLink" th:href="@{/post/}+${post.id}"><span class="postTitle" th:text="${post.title}"></span></a><br />
 							    	<span class="postDate" th:text="${post.date}"></span><br />
 							    	<span class="postContent" th:text="${post.content}"></span><br /><br />
 							    </div>   				    	

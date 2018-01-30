@@ -1,5 +1,6 @@
 package itforum.entities;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -63,5 +64,23 @@ public class ForumPost extends Post {
 	public String toString() {
 		return "ForumPost [id=" + getId() + ", title=" + title + ", content=" + getContent() + ", date=" + getDate()
 				+ ", user=" + user + ", category=" + category + ", comments=" + comments + "]";
+	}
+
+	public ForumPost(@NotNull @Size(min = 5, max = 70, message = "{title.size}") String title, User user,
+			ForumCategory category, List<PostComment> comments) {
+		super();
+		this.title = title;
+		this.user = user;
+		this.category = category;
+		this.comments = comments;
+	}
+	
+	public ForumPost() {
+		super();
+	}
+
+	public ForumPost(Long id, @NotNull @Size(min = 5, max = 70, message = "{title.size}") String title,  String content, Timestamp date) {
+		super(id, content, date);
+		this.title = title;
 	}
 }

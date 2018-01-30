@@ -2,7 +2,7 @@ package itforum.web;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
-import java.util.List;
+import java.util.LinkedList;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,7 +23,10 @@ public class ForumCategoryController {
 
 	@RequestMapping(value="/category/{category}", method=GET)
 	public String showAllPostsInCategory(@PathVariable String category, Model model){
-		List<ForumPost> postsByCategory = forumPostRepository.findAllPostsByCategory(category);
+		LinkedList<ForumPost> postsByCategory = forumPostRepository.findAllPostsByCategory(category);
+		/*for(ForumPost post : postsByCategory){
+			System.out.println(post);
+		}*/
 		model.addAttribute("categoryTitle", category);
 		model.addAttribute("posts", postsByCategory);
 		return "categoryPage";

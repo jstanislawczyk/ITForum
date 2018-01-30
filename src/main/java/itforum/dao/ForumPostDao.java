@@ -46,15 +46,15 @@ public class ForumPostDao implements ForumPostRepository{
 	
 	private LinkedList<ForumPost> mapToPostList(List<Object[]> posts){
 		LinkedList<ForumPost> mappedPosts = new LinkedList<ForumPost>();	
-		ForumPost forumPost = new ForumPost();
 		
-		for(Object[] post : posts){
-			forumPost.setId(((BigInteger)post[0]).longValue());
-			forumPost.setContent((String) post[1]);
-			forumPost.setTitle((String) post[2]);
-			forumPost.setDate((Timestamp) post[3]);
-			
-			mappedPosts.add(forumPost);
+		for(Object[] post : posts){	
+			mappedPosts.add(
+					new ForumPost(
+							((BigInteger)post[0]).longValue(),
+							(String) post[1],
+							(String) post[2],
+							(Timestamp) post[3]
+					));
 		}
 		
 		return mappedPosts;
