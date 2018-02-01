@@ -2,15 +2,15 @@
   ITForum is my first project using Spring MVC. Forum is simple, allows to register users and create categories. 
   Users after successful login can create and comment posts.
   Technology stack:
-  *Java
-  *Spring Framework, Spring MVC - application framework
-  *Spring Security - password hashing, login handling etc.
-  *MySQL + Workbench - database
-  *JPA - ORM
-  *Thymeleaf - views handling
-  *JUnit, Mockito - testing
-  *Maven - build automation tool
-  *Tomcat - application container
+  1. Java
+  2. Spring Framework, Spring MVC - application framework
+  3. Spring Security - password hashing, login handling etc.
+  4. MySQL + Workbench - database
+  5. JPA - ORM
+  6. Thymeleaf - views handling
+  7. JUnit, Mockito - testing
+  8. Maven - build automation tool
+  9. Tomcat - application container
   
   How to run?
   1. Create WAR file
