@@ -49,44 +49,14 @@ body{
 	background-color: #f2f2f2;
 }
 
-.categories{	
-	border-right: 2px solid #cecece;
-	border-bottom: 2px solid #cecece;
-	border-left: 2px solid #cecece;
-	width: 996px;
-	background-color: #fff;
-}
-
-.category{
-	border-bottom: 1px solid #cecece;
-	padding-top: 5px;
-	padding-left: 10px;
-}
-
-.category a{
-	color: #000000;
-}
-
-.category a:hover{
-	color: #505050;
-}
-
-.categoryTitle{
-	font-size: 20px;
-}
-
-.categoryDescription{
-	font-size: 13px;
-	color: #7f7f7f;
-}
-
 .littleBanner{
-	padding-top: 15px;
+	padding-top: 5px;
+	padding-bottom: 3px;
 	background-color: #3c3c3c;
 	width: 1000px;
 	height: 40px;
 	text-align: center;
-	font-size: 15px;
+	font-size: 25px;
 	color: #FFFFFF;
 	text-align: left;
 }
@@ -341,7 +311,12 @@ a{
 	font-size: 30px;
 }
 
-.posts{	
+.smallContent{
+	font-size: 15px;
+	color: #7f7f7f;
+}
+
+.content{	
 	border-right: 2px solid #cecece;
 	border-bottom: 2px solid #cecece;
 	border-left: 2px solid #cecece;
@@ -349,30 +324,31 @@ a{
 	background-color: #fff;
 }
 
-.post{
+.contentField{
 	border-bottom: 1px solid #cecece;
 	padding-top: 5px;
 	padding-left: 10px;
+	padding-bottom: 5px;
 }
 
-.post a{
+.contentField a{
 	color: #000000;
 }
 
-.post a:hover{
+.contentField a:hover{
 	color: #505050;
 }
 
-.postTitle{
+.contentDate{
+	font-size: 11px;
+	color: #7f7f7f;
+}
+
+.contentTitle{
 	font-size: 20px;
 }
 
-.postContent{
-	font-size: 13px;
-	color: #7f7f7f;
+.contentFieldDescription{
+	color: #000000;
 }
 
-.postDate{
-	font-size: 9px;
-	color: #7f7f7f;
-}

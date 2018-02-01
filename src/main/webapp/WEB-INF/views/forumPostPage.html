@@ -23,6 +23,18 @@
 				</div>
 			</div>
 			
+			<div class="main">
+				<div class="menu" >
+					<div class="littleBanner">
+						<span class="littleTitle" th:text="${post.title}"></span>
+					</div>
+					<div class="content">
+						<div class="contentField">
+							<span th:text="${post.content}"></span>
+						</div>
+					</div>
+				</div>
+			</div>
 			
 			<div class="footer">
 				<span class="footerText"><a th:href="@{/contact}">Contact us</a></span>

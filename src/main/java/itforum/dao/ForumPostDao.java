@@ -33,7 +33,7 @@ public class ForumPostDao implements ForumPostRepository{
 	@Override
 	public LinkedList<ForumPost> findAllPostsByCategory(String category) {
 		Query query = entityManager.createNativeQuery(
-				  "SELECT fp.id, fp.content, fp.title, fp.date FROM forumpost AS fp "
+				  "SELECT fp.id, fp.title, fp.content, fp.date FROM forumpost AS fp "
 				+ "INNER JOIN forumcategory AS fc "
 				+ "ON fc.id = fp.idCategory "
 				+ "WHERE fc.title=?1");
@@ -64,7 +64,7 @@ public class ForumPostDao implements ForumPostRepository{
 	@Override
 	public ForumPost findPostById(Long id) {
 		try{
-			ForumPost post = entityManager.createQuery("SELECT * FROM ForumPost p WHERE id=:postId", ForumPost.class)
+			ForumPost post = entityManager.createQuery("SELECT p FROM ForumPost p WHERE id=:postId", ForumPost.class)
 					.setParameter("postId", id)
 					.getSingleResult();
 			return post;

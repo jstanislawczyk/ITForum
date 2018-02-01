@@ -21,16 +21,21 @@ public class PostController {
 	}
 	
 	@RequestMapping("/post/{postId}")
-	public String showForumPost(@PathVariable Long postId, Model model){
+	public String showForumPost(@PathVariable String postId, Model model){
 		
-		ForumPost post = forumPostRepository.findPostById(postId);
+		ForumPost post = null;
+
+		try{
+			post = forumPostRepository.findPostById(Long.parseLong(postId));
+		}catch(NumberFormatException nfe){
+			throw new PageNotFoundException();
+		}
 		
 		if(post == null){
 			throw new PageNotFoundException();
 		}else{
-			//todo
+			model.addAttribute("post",post);
+			return "forumPostPage";
 		}
-		
-		return "forumPostPage";
 	}
 }

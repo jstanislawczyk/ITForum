@@ -11,15 +11,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import itforum.entities.ForumPost;
 import itforum.exceptions.PageNotFoundException;
+import itforum.repositories.ForumCategoryRepository;
 import itforum.repositories.ForumPostRepository;
 
 @Controller
 public class ForumCategoryController {
 	
 	private ForumPostRepository forumPostRepository;
+	private ForumCategoryRepository forumCategoryRepository;
 	
-	public ForumCategoryController(ForumPostRepository forumPostRepository) {
+	public ForumCategoryController(ForumPostRepository forumPostRepository, ForumCategoryRepository forumCategoryRepository) {
 		this.forumPostRepository = forumPostRepository;
+		this.forumCategoryRepository = forumCategoryRepository;
 	}
 
 	@RequestMapping(value="/category/{category}", method=GET)
@@ -27,12 +30,12 @@ public class ForumCategoryController {
 		
 		LinkedList<ForumPost> postsByCategory = forumPostRepository.findAllPostsByCategory(category);
 		
-		if(postsByCategory.isEmpty()){
+		if(forumCategoryRepository.checkIfCategoryExists(category)){
+			model.addAttribute("categoryTitle", category);
+			model.addAttribute("posts", postsByCategory);
+			return "categoryPage";
+		}else{
 			throw new PageNotFoundException();
 		}
-		
-		model.addAttribute("categoryTitle", category);
-		model.addAttribute("posts", postsByCategory);
-		return "categoryPage";
 	}
 }

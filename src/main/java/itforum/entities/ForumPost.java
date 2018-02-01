@@ -14,7 +14,7 @@ import javax.validation.constraints.Size;
 public class ForumPost extends Post {
 
 	@NotNull
-	@Size(min = 5, max = 70, message = "{title.size}")
+	@Size(min = 5, max = 70, message = "Title must conatin {min} to {max} letters")
 	private String title;
 
 	@ManyToOne

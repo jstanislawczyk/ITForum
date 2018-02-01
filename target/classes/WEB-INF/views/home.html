@@ -28,11 +28,11 @@
 					<div class="littleBanner">
 						<span class="littleTitle">Categories</span>	
 					</div>
-					<div class="categories">		
+					<div class="content">		
 							<th:block th:each="category : ${categories}" >
-								<div class="category">
-							    	<a class="categoryLink" th:href="@{/category/}+${category.title}"><span class="categoryTitle" th:text="${category.title}"></span></a><br />
-							    	<span class="categoryDescription" th:text="${category.description}"></span><br /><br />
+								<div class="contentField">
+							    	<a class="contentTitle" th:href="@{/category/}+${category.title}"><span th:text="${category.title}"></span></a><br />
+							    	<span class="contentFieldDescription" th:text="${category.description}"></span><br /><br />
 							    </div>   				    	
 						    </th:block>	  
 					</div>
