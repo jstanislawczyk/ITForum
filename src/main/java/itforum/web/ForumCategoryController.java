@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import itforum.entities.ForumPost;
-import itforum.exceptions.CategoryNotFoundException;
+import itforum.exceptions.PageNotFoundException;
 import itforum.repositories.ForumPostRepository;
 
 @Controller
@@ -28,7 +28,7 @@ public class ForumCategoryController {
 		LinkedList<ForumPost> postsByCategory = forumPostRepository.findAllPostsByCategory(category);
 		
 		if(postsByCategory.isEmpty()){
-			throw new CategoryNotFoundException();
+			throw new PageNotFoundException();
 		}
 		
 		model.addAttribute("categoryTitle", category);

@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import itforum.entities.User;
-import itforum.exceptions.UserNotFoundException;
+import itforum.exceptions.PageNotFoundException;
 import itforum.repositories.UserRepository;
 
 @Controller
@@ -27,7 +27,7 @@ public class ProfileController {
 		User user = null;
 		user = userRepository.getUserByNick(nick);
 		if(user == null){
-			throw new UserNotFoundException();
+			throw new PageNotFoundException();
 		}
 		model.addAttribute(user);
 		return "profilePage";

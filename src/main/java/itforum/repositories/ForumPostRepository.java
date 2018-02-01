@@ -7,4 +7,5 @@ import itforum.entities.ForumPost;
 public interface ForumPostRepository{
 	Long countPosts();
 	LinkedList<ForumPost> findAllPostsByCategory(String category);
+	ForumPost findPostById(Long id);
 }

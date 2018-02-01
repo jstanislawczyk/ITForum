@@ -6,6 +6,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.transaction.Transactional;
@@ -58,5 +59,18 @@ public class ForumPostDao implements ForumPostRepository{
 		}
 		
 		return mappedPosts;
+	}
+
+	@Override
+	public ForumPost findPostById(Long id) {
+		try{
+			ForumPost post = entityManager.createQuery("SELECT * FROM ForumPost p WHERE id=:postId", ForumPost.class)
+					.setParameter("postId", id)
+					.getSingleResult();
+			return post;
+		}catch(NoResultException nre){
+			return null;
+		}
+		
 	}
 }
