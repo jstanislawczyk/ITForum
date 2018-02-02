@@ -4,7 +4,7 @@
 	  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 	<head>
 		<meta charset="UTF-8" />
-		<title>ITForum registration</title>		 
+		<title>Add new category</title>		 
 		<link rel="stylesheet" type="text/css" th:href="@{/styles/style.css}" ></link>
 		<link href="https://fonts.googleapis.com/css?family=Lato:400,700&amp;subset=latin-ext" rel="stylesheet">
 	</head>
@@ -23,7 +23,7 @@
 					<form method="POST" th:action="@{/admin/addNewCategory}" th:object="${forumCategory}">
 
 						<input type="text" th:field="*{title}" placeholder="title" th:class="${#fields.hasErrors('title')}? 'error' : 'text'"/>
-						<input type="text" th:field="*{description}" placeholder="description" th:class="${#fields.hasErrors('description')}? 'error' : 'text'"/>
+						<textarea rows="4" th:field="*{description}" placeholder="description" th:class="${#fields.hasErrors('description')}? 'error' : 'text'"></textarea>
 							
 						<input class="submit" type="submit" value = "Save category"/>
 							

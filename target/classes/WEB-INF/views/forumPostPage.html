@@ -4,7 +4,7 @@
 	  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 	<head>
 		<meta charset="UTF-8" />
-		<title>ITForum rules</title>		 
+		<title th:text="${post.title}"></title>		 
 		<link rel="stylesheet" type="text/css" th:href="@{/styles/style.css}" ></link>
 		<link href="https://fonts.googleapis.com/css?family=Lato:400,700&amp;subset=latin-ext" rel="stylesheet">
 	</head>
@@ -26,12 +26,23 @@
 			<div class="main">
 				<div class="menu" >
 					<div class="littleBanner">
+						<span class="contentWhiteDescription" th:text="${post.date}">Added:</span>
+						<span class="contentWhiteDescription" th:text="${post.date}">Added:</span><br />
 						<span class="littleTitle" th:text="${post.title}"></span>
 					</div>
 					<div class="content">
 						<div class="contentField">
 							<span th:text="${post.content}"></span>
 						</div>
+					</div>
+				</div>
+				
+				<div class="menu">
+					<div class="smallCommentBanner">
+						Comments
+					</div>
+					<div class="content">
+						
 					</div>
 				</div>
 			</div>

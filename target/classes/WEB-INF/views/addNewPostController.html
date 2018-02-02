@@ -4,7 +4,7 @@
 	  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 	<head>
 		<meta charset="UTF-8" />
-		<title>Page not found</title>		 
+		<title>Create new post</title>		 
 		<link rel="stylesheet" type="text/css" th:href="@{/styles/style.css}" ></link>
 		<link href="https://fonts.googleapis.com/css?family=Lato:400,700&amp;subset=latin-ext" rel="stylesheet">
 	</head>
@@ -16,15 +16,22 @@
 				<div sec:authorize="hasAuthority('ADMIN')" class="bannerButtons"><a th:href="@{/admin}">Admin</a></div>
 				<div sec:authorize="isAnonymous()" class="bannerButtons"><a th:href="@{/register}">Register</a></div>
 				<div sec:authorize="isAnonymous()" class="bannerButtons"><a th:href="@{/login}">Login</a></div>
-				<div sec:authorize="isAuthenticated()" class="bannerButtons">
-					<form th:action="@{/logout}" method="post">
-    					<input class="button" type="submit" value="Logout">
-					</form>
-				</div>
 			</div>
 			
-			<div class="errorMain">
-				<div class="webError">Error, page not found</div>
+			<div class="formSection">
+				<div class="form">
+					<form method="POST" th:action="@{/admin/addNewCategory}" th:object="${forumCategory}">
+
+						<input type="text" th:field="*{title}" placeholder="title" th:class="${#fields.hasErrors('title')}? 'error' : 'text'"/>
+						<textarea rows="4" th:field="*{description}" placeholder="description" th:class="${#fields.hasErrors('description')}? 'error' : 'text'"></textarea>
+							
+						<input class="submit" type="submit" value = "Save category"/>
+							
+						<ul class="errors">
+							<li th:each="err : ${#fields.errors('*')}" th:text="${err}">Validation error</li>	
+						</ul>
+					</form>
+				</div>
 			</div>
 		</div>
 	</body>

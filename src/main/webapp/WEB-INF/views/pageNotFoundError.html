@@ -4,7 +4,7 @@
 	  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 	<head>
 		<meta charset="UTF-8" />
-		<title>ITForum registration</title>		 
+		<title>Page not found</title>		 
 		<link rel="stylesheet" type="text/css" th:href="@{/styles/style.css}" ></link>
 		<link href="https://fonts.googleapis.com/css?family=Lato:400,700&amp;subset=latin-ext" rel="stylesheet">
 	</head>
@@ -13,6 +13,9 @@
 		<div>
 			<div class="banner">
 				<a class="title" th:href="@{/}">ITForum</a>
+				<div sec:authorize="hasAuthority('ADMIN')" class="bannerButtons"><a th:href="@{/admin}">Admin</a></div>
+				<div sec:authorize="isAnonymous()" class="bannerButtons"><a th:href="@{/register}">Register</a></div>
+				<div sec:authorize="isAnonymous()" class="bannerButtons"><a th:href="@{/login}">Login</a></div>
 				<div sec:authorize="isAuthenticated()" class="bannerButtons">
 					<form th:action="@{/logout}" method="post">
     					<input class="button" type="submit" value="Logout">

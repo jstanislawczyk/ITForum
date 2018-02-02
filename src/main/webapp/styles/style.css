@@ -51,10 +51,9 @@ body{
 
 .littleBanner{
 	padding-top: 5px;
-	padding-bottom: 3px;
+	padding-bottom: 8px;
 	background-color: #3c3c3c;
 	width: 1000px;
-	height: 40px;
 	text-align: center;
 	font-size: 25px;
 	color: #FFFFFF;
@@ -352,3 +351,22 @@ a{
 	color: #000000;
 }
 
+.smallCommentBanner{
+	padding-top: 5px;
+	background-color: #FFF;
+	width: 986px;
+	height: 30px;
+	text-align: center;
+	font-size: 18px;
+	color: #000;
+	text-align: left;
+	border: 1px solid #cecece;
+	padding-left: 10px;
+}
+
+.contentWhiteDescription{
+	display: inline-block;
+	margin-left: 20px;
+	font-size: 12px;
+	color: #FFF;
+}
