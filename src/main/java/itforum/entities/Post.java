@@ -13,7 +13,7 @@ import javax.validation.constraints.Size;
 public abstract class Post {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
 	@NotNull
@@ -57,5 +57,4 @@ public abstract class Post {
 	public Post() {
 		super();
 	}
-	
 }

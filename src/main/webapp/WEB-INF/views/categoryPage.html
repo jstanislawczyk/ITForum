@@ -14,6 +14,7 @@
 			<div class="banner">
 				<a class="title" th:href="@{/}">ITForum</a>
 				<div sec:authorize="hasAuthority('ADMIN')" class="bannerButtons"><a th:href="@{/admin}">Admin</a></div>
+				<div sec:authorize="hasAnyAuthority('USER','ADMIN')" class="bannerButtons"><a th:href="@{/post/createNewPost}">Create post</a></div>
 				<div sec:authorize="isAnonymous()" class="bannerButtons"><a th:href="@{/register}">Register</a></div>
 				<div sec:authorize="isAnonymous()" class="bannerButtons"><a th:href="@{/login}">Login</a></div>
 				<div sec:authorize="isAuthenticated()" class="bannerButtons">
@@ -23,8 +24,13 @@
 				</div>
 			</div>
 			
-			<div class="main">
+			<div class="main">	
+				<div class="contentSuccess" th:if="${success != null}">
+						<span class="success" th:text="${success}"></span>
+				</div>		
 				<div class="menu">
+					<a sec:authorize="hasAnyAuthority('USER','ADMIN')" th:href="@{/post/createNewPost}"><button class="blueButton">Create post</button></a>
+				
 					<div class="littleBanner">
 						<span th:text="${categoryTitle}" class="littleTitle"></span>	
 					</div>

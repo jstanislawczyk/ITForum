@@ -24,6 +24,11 @@ public class ForumPostDao implements ForumPostRepository{
 	private EntityManager entityManager;
 	
 	@Override
+	public void savePost(ForumPost forumPost) {
+		entityManager.merge(forumPost);
+	}
+	
+	@Override
 	public Long countPosts() {
 		Long numberOfPosts = (Long) entityManager.createQuery("SELECT COUNT(*) FROM ForumPost p").getSingleResult();
 		return numberOfPosts;
@@ -38,6 +43,22 @@ public class ForumPostDao implements ForumPostRepository{
 				+ "ON fc.id = fp.idCategory "
 				+ "WHERE fc.title=?1");
 		query.setParameter(1, category);
+		
+		List<Object[]> postsInCategory = query.getResultList();
+		LinkedList<ForumPost> postsInCategoryMapped = mapToPostList(postsInCategory);
+		
+		return postsInCategoryMapped;
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public LinkedList<ForumPost> findAllPostsById(Long id) {
+		Query query = entityManager.createNativeQuery(
+				  "SELECT fp.id, fp.title, fp.content, fp.date FROM forumpost AS fp "
+				+ "INNER JOIN forumcategory AS fc "
+				+ "ON fc.id = fp.idCategory "
+				+ "WHERE fc.id=?1");
+		query.setParameter(1, id);
 		
 		List<Object[]> postsInCategory = query.getResultList();
 		LinkedList<ForumPost> postsInCategoryMapped = mapToPostList(postsInCategory);

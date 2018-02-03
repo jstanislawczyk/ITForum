@@ -14,16 +14,21 @@
 			<div class="banner">
 				<a class="title" th:href="@{/}">ITForum</a>
 				<div sec:authorize="hasAuthority('ADMIN')" class="bannerButtons"><a th:href="@{/admin}">Admin</a></div>
+				<div sec:authorize="hasAnyAuthority('USER','ADMIN')" class="bannerButtons"><a th:href="@{/post/createNewPost}">Create post</a></div>		
 				<div sec:authorize="isAnonymous()" class="bannerButtons"><a th:href="@{/register}">Register</a></div>
 				<div sec:authorize="isAnonymous()" class="bannerButtons"><a th:href="@{/login}">Login</a></div>
 			</div>
 			
 			<div class="formSection">
 				<div class="form">
-					<form method="POST" th:action="@{/admin/addNewCategory}" th:object="${forumCategory}">
+					<form method="POST" th:action="@{/post/createNewPost}" th:object="${forumPost}">
+						<span>Choose category:  </span>
+						<select class="select" th:field="${forumCategory.id}">					
+								<option th:value="${category.id}" th:text="${category.title}" th:each="category : ${categories}"/>
+						</select>
 
 						<input type="text" th:field="*{title}" placeholder="title" th:class="${#fields.hasErrors('title')}? 'error' : 'text'"/>
-						<textarea rows="4" th:field="*{description}" placeholder="description" th:class="${#fields.hasErrors('description')}? 'error' : 'text'"></textarea>
+						<textarea rows="4" th:field="*{content}" placeholder="content" th:class="${#fields.hasErrors('content')}? 'error' : 'text'"></textarea>
 							
 						<input class="submit" type="submit" value = "Save category"/>
 							

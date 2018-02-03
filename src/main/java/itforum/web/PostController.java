@@ -1,5 +1,7 @@
 package itforum.web;
 
+import static org.springframework.web.bind.annotation.RequestMethod.GET;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,22 +22,29 @@ public class PostController {
 		this.forumPostRepository = forumPostRepository;
 	}
 	
-	@RequestMapping("/post/{postId}")
-	public String showForumPost(@PathVariable String postId, Model model){
+	@RequestMapping(value = "/post/{postIdAsString}", method = GET)
+	public String showForumPost(
+			@PathVariable String postIdAsString, 
+			Model model){
 		
 		ForumPost post = null;
-
+		post = findPostByIdOrThrowErrorIfNotExists(post, postIdAsString);
+				
+		model.addAttribute("nick", post.getUser().getNick());
+		model.addAttribute("post",post);
+		return "forumPostPage";
+	}
+	
+	private ForumPost findPostByIdOrThrowErrorIfNotExists(ForumPost post, String postIdAsString){
 		try{
-			post = forumPostRepository.findPostById(Long.parseLong(postId));
+			post = forumPostRepository.findPostById(Long.parseLong(postIdAsString));
 		}catch(NumberFormatException nfe){
 			throw new PageNotFoundException();
 		}
 		
 		if(post == null){
 			throw new PageNotFoundException();
-		}else{
-			model.addAttribute("post",post);
-			return "forumPostPage";
-		}
+		}	
+		return post;
 	}
 }

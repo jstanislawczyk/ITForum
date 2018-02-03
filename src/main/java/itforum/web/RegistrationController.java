@@ -38,7 +38,7 @@ public class RegistrationController{
 	
 	@RequestMapping(path = "/register", method=POST)
 	public String processRegistration(
-				RedirectAttributes model,
+				RedirectAttributes attrubites,
 				@Valid User user,
 				BindingResult result
 			){
@@ -55,8 +55,8 @@ public class RegistrationController{
 			user.setPassword(passwordEncoder.encode(user.getPassword()));
 			userRepository.saveUser(user);
 			
-			model.addAttribute("nick", user.getNick());
-			model.addFlashAttribute("user", user);
+			attrubites.addAttribute("nick", user.getNick());
+			attrubites.addFlashAttribute("user", user);
 			return "redirect:/profile/{nick}";
 		}
 	}

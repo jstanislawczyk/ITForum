@@ -14,6 +14,7 @@
 			<div class="banner">
 				<a class="title" th:href="@{/}">ITForum</a>
 				<div sec:authorize="hasAuthority('ADMIN')" class="bannerButtons"><a th:href="@{/admin}">Admin</a></div>
+				<div sec:authorize="hasAnyAuthority('USER','ADMIN')" class="bannerButtons"><a th:href="@{/post/createNewPost}">Create post</a></div>
 				<div sec:authorize="isAnonymous()" class="bannerButtons"><a th:href="@{/register}">Register</a></div>
 				<div sec:authorize="isAnonymous()" class="bannerButtons"><a th:href="@{/login}">Login</a></div>
 			</div>

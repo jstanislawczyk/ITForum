@@ -8,6 +8,10 @@ body{
 	background-color: #f2f2f2;
 }
 
+textarea{
+	font-family: 'Lato', sans-serif;
+}
+
 .banner{
 	background-color: #3c3c3c;
 	width: 100%;
@@ -191,6 +195,33 @@ form{
 	background-color: #4d4d4d;
 }
 
+.select{
+    background: url(http://i62.tinypic.com/2e3ybe1.jpg) no-repeat right center;
+    height: 30px;
+    width: 150px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-indent: 1px;
+    text-overflow: '';
+	border: 2px solid #ddd;
+}
+
+.blueButton{
+	height: 40px;
+	width: 150px;
+	background-color: #4277F4;
+	color: #FFF;
+	border: 1px solid #5388F5;
+	margin-bottom: 20px;
+	font-size: 18px;
+	cursor: pointer;
+	border-radius: 2px;
+}
+
+.blueButton:hover{
+	background-color: #5388F5;
+}
+
 #remember_me{
 	margin-top: 15px;
 }
@@ -366,7 +397,29 @@ a{
 
 .contentWhiteDescription{
 	display: inline-block;
-	margin-left: 20px;
 	font-size: 12px;
 	color: #FFF;
+}
+
+.contentWhiteDescription:FIRST-CHILD{
+	margin-left: 20px;
+}
+
+.contentWhiteDescription a{
+	color: #ff4a4a;
+	font-size: 14px;
+}
+
+.contentWhiteDescriptionDate{
+	font-size: 12px;
+	color: #ff4a4a;
+}
+
+.contentSuccess{	
+	text-align: center;
+	heigth: 40px;
+	width: 996px;
+	background-color: #fff;
+	font-size: 20px;
+	margin-bottom: 20px;
 }
