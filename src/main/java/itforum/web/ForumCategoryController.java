@@ -28,27 +28,12 @@ public class ForumCategoryController {
 	@RequestMapping(value="/category/{categoryTitle}", method=GET)
 	public String showAllPostsInCategoryByCategoryTitle(@PathVariable String categoryTitle, Model model){
 		
-		LinkedList<ForumPost> postsByCategory = forumPostRepository.findAllPostsByCategory(categoryTitle);
+		LinkedList<ForumPost> postsByCategory = forumPostRepository.findAllPostsByCategorySortByNewest(categoryTitle);
 		
 		if(forumCategoryRepository.checkIfCategoryExistsByTitle(categoryTitle)){
 			model.addAttribute("categoryTitle", categoryTitle);
 			model.addAttribute("posts", postsByCategory);
-			return "categoryPage";
-		}else{
-			throw new PageNotFoundException();
-		}
-	}
-	
-	@RequestMapping(value="/category/id/{id}", method=GET)
-	public String showAllPostsInCategoryById(
-				@PathVariable Long id,
-				Model model){
-		LinkedList<ForumPost> postsByCategory = forumPostRepository.findAllPostsById(id);	
-		String categoryTitle = forumCategoryRepository.findCategoryById(id).getTitle();
 		
-		if(forumCategoryRepository.checkIfCategoryExistsById(id)){
-			model.addAttribute("categoryTitle", categoryTitle);
-			model.addAttribute("posts", postsByCategory);
 			return "categoryPage";
 		}else{
 			throw new PageNotFoundException();

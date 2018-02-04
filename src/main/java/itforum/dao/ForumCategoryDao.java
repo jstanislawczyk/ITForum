@@ -44,20 +44,6 @@ public class ForumCategoryDao implements ForumCategoryRepository{
 			return null;
 		}
 	}
-	
-	@Override
-	public ForumCategory findCategoryById(Long id) {
-		
-		try{
-			ForumCategory category = entityManager
-								.createQuery("SELECT fc FROM ForumCategory fc WHERE fc.id=:id", ForumCategory.class)
-								.setParameter("id", id)
-								.getSingleResult();
-			return category;
-		}catch(NoResultException nre){
-			return null;
-		}
-	}
 
 	@Override
 	public boolean checkIfCategoryExistsByTitle(String title) {
@@ -76,12 +62,27 @@ public class ForumCategoryDao implements ForumCategoryRepository{
 	public boolean checkIfCategoryExistsById(Long id) {
 		try{
 			entityManager
-					.createQuery("SELECT fc.title FROM ForumCategory fc WHERE fc.id=:id", String.class)
-					.setParameter("id", id)
-					.getSingleResult();
+				.createQuery("SELECT fc.title FROM ForumCategory fc WHERE fc.id=:id", String.class)
+				.setParameter("id", id)
+				.getSingleResult();
 			return true;
 		}catch(NoResultException nre){
 			return false;
 		}
+	}
+
+	@Override
+	public String findCategoryTitleById(Long id) {
+		
+		try{
+			String title=entityManager
+						.createQuery("SELECT fc.title FROM ForumCategory fc WHERE fc.id=:id", String.class)
+						.setParameter("id", id)
+						.getSingleResult();
+				return title;
+		}catch(NoResultException nre){
+			return null;
+		}
+		
 	}
 }

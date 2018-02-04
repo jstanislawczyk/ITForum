@@ -60,8 +60,8 @@ public class CreateNewPostController {
 		}else{		
 			forumPost = setForumPostDefaultValues(forumPost, forumCategory);
 			forumPostRepository.savePost(forumPost);
-			attributes.addAttribute("categoryId", forumCategory.getId());
-			return "redirect:/category/id/{categoryId}";
+			attributes.addAttribute("categoryTitle", getCategoryTitleById(forumCategory.getId()));
+			return "redirect:/category/{categoryTitle}";
 		}	
 	}
 	
@@ -77,5 +77,10 @@ public class CreateNewPostController {
 	private User currentLoggedUser(){
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		return userRepository.getUserByNick(auth.getName());
+	}
+	
+	private String getCategoryTitleById(Long id){
+		String title = forumCategoryRepository.findCategoryTitleById(id);
+		return title;
 	}
 }

@@ -36,12 +36,13 @@ public class ForumPostDao implements ForumPostRepository{
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public LinkedList<ForumPost> findAllPostsByCategory(String category) {
+	public LinkedList<ForumPost> findAllPostsByCategorySortByNewest(String category) {
 		Query query = entityManager.createNativeQuery(
 				  "SELECT fp.id, fp.title, fp.content, fp.date FROM forumpost AS fp "
 				+ "INNER JOIN forumcategory AS fc "
 				+ "ON fc.id = fp.idCategory "
-				+ "WHERE fc.title=?1");
+				+ "WHERE fc.title=?1 "
+				+ "ORDER BY fp.date DESC");
 		query.setParameter(1, category);
 		
 		List<Object[]> postsInCategory = query.getResultList();
