@@ -24,7 +24,7 @@
 			
 			<div class="adminMain">
 				<div class="adminPanel">
-					<div sec:authorize="hasAuthority('ADMIN')" class="adminButton"><a th:href="@{/admin/addNewCategory}">Add new category</a></div>
+					<a th:href="@{/admin/addNewCategory}"><button sec:authorize="hasAuthority('ADMIN')" class="adminButton">Add new category</button></a>
 				</div>
 			</div>
 		</div>

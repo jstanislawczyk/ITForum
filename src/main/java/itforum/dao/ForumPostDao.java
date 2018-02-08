@@ -41,9 +41,9 @@ public class ForumPostDao implements ForumPostRepository{
 				  "SELECT fp.id, fp.title, fp.content, fp.date FROM forumpost AS fp "
 				+ "INNER JOIN forumcategory AS fc "
 				+ "ON fc.id = fp.idCategory "
-				+ "WHERE fc.title=?1 "
+				+ "WHERE fc.title=:title "
 				+ "ORDER BY fp.date DESC");
-		query.setParameter(1, category);
+		query.setParameter("title", category);
 		
 		List<Object[]> postsInCategory = query.getResultList();
 		LinkedList<ForumPost> postsInCategoryMapped = mapToPostList(postsInCategory);

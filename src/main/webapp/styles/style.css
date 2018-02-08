@@ -12,6 +12,16 @@ textarea{
 	font-family: 'Lato', sans-serif;
 }
 
+#commentTextarea{
+	margin-left: 50px;
+	display: none;
+	margin-bottom:25px;
+}
+
+#commentTextarea textarea{
+	width:95%;
+}
+
 .banner{
 	background-color: #3c3c3c;
 	width: 100%;
@@ -206,20 +216,22 @@ form{
 	border: 2px solid #ddd;
 }
 
-.blueButton{
+.redButton{
 	height: 40px;
 	width: 150px;
-	background-color: #4277F4;
+	background-color: #f54b4b;
 	color: #FFF;
-	border: 1px solid #5388F5;
+	border: 1px solid #e43a3a;
+	margin-top:10px;
 	margin-bottom: 20px;
 	font-size: 18px;
 	cursor: pointer;
 	border-radius: 2px;
+	margin-left: 50px;
 }
 
-.blueButton:hover{
-	background-color: #5388F5;
+.redButton:hover{
+	background-color: #e43a3a;
 }
 
 #remember_me{
@@ -384,12 +396,12 @@ a{
 
 .smallCommentBanner{
 	padding-top: 5px;
-	background-color: #FFF;
-	width: 986px;
+	background-color: #3c3c3c;
+	width: 988px;
 	height: 30px;
 	text-align: center;
 	font-size: 18px;
-	color: #000;
+	color: #FFF;
 	text-align: left;
 	border: 1px solid #cecece;
 	padding-left: 10px;
@@ -422,4 +434,28 @@ a{
 	background-color: #fff;
 	font-size: 20px;
 	margin-bottom: 20px;
+}
+
+.postContentField{
+	padding: 30px 20px 30px 50px;
+	font-size: 19px;
+}
+
+.postContentField a{
+	color: #000000;
+}
+
+.postContentField a:hover{
+	color: #505050;
+}
+
+.commentDate{
+	font-size: 11px;
+	color: #7f7f7f;
+	margin-left: 25px;
+}
+
+.commentContent{
+	color: #000000;
+	margin-left: 25px;
 }

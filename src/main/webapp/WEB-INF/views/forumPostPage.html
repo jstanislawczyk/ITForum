@@ -7,6 +7,20 @@
 		<title th:text="${post.title}"></title>		 
 		<link rel="stylesheet" type="text/css" th:href="@{/styles/style.css}" ></link>
 		<link href="https://fonts.googleapis.com/css?family=Lato:400,700&amp;subset=latin-ext" rel="stylesheet">
+		
+		<script>
+			var hidden=true;
+			
+			function showCommentTextarea() {
+				if(hidden){
+					document.getElementById("commentTextarea").style.display="block";
+					hidden = false;
+				}else{
+					document.getElementById("commentTextarea").style.display="none";
+					hidden = true;
+				}	
+			}
+		</script>
 	</head>
 	
 	<body>
@@ -35,8 +49,16 @@
 						<span class="littleTitle" th:text="${post.title}"></span>
 					</div>
 					<div class="content">
-						<div class="contentField">
+						<div class="postContentField">
 							<span th:text="${post.content}"></span>
+						</div>
+						<hr width="90%" />
+						<button sec:authorize="hasAnyAuthority('USER','ADMIN')" class="redButton" onclick="showCommentTextarea()">Comment</button>
+						<div id="commentTextarea">
+							<form method="POST" th:action="@{/post/}+${post.id}" th:object="${postComment}">
+								<textarea rows="4" class="text" placeholder="Comment..." th:field="*{content}" th:class="${#fields.hasErrors('content')}? 'error' : 'text'"></textarea>
+								<input class="submit" type="submit" value = "Create comment"/>
+							</form>	
 						</div>
 					</div>
 				</div>
@@ -45,9 +67,21 @@
 					<div class="smallCommentBanner">
 						Comments
 					</div>
-					<div class="content">
-						
+					<div class="content">					
+						<th:block th:if="${not #lists.isEmpty(comments)}" th:each="comment : ${comments}" >
+							<div class="contentField">
+								<span class="commentDate" th:text="${comment.date}"></span><br />
+								<hr width="95%" />
+							    <span class="commentContent" th:text="${comment.content}"></span><br />  	
+							</div>   				    	
+						</th:block>
 					</div>
+					
+					<div class="content">
+						<div class="postContentField" th:if="${#lists.isEmpty(comments)}">
+	     						Comments not found
+						</div>
+					</div>	
 				</div>
 			</div>
 			

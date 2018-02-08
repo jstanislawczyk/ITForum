@@ -29,7 +29,7 @@
 						<span class="success" th:text="${success}"></span>
 				</div>		
 				<div class="menu">
-					<a sec:authorize="hasAnyAuthority('USER','ADMIN')" th:href="@{/post/createNewPost}"><button class="blueButton">Create post</button></a>
+					<a sec:authorize="hasAnyAuthority('USER','ADMIN')" th:href="@{/post/createNewPost}"><button class="redButton">Create post</button></a>
 				
 					<div class="littleBanner">
 						<span th:text="${categoryTitle}" class="littleTitle"></span>	
