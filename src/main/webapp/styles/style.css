@@ -449,13 +449,21 @@ a{
 	color: #505050;
 }
 
-.commentDate{
+.commentInfo{
 	font-size: 11px;
 	color: #7f7f7f;
-	margin-left: 25px;
+}
+
+.commentInfo:FIRST-CHILD{
+	margin-left: 15px;
 }
 
 .commentContent{
 	color: #000000;
 	margin-left: 25px;
+}
+
+.commentUserNick{
+	color: #000000;
+	font-size: 15px;
 }

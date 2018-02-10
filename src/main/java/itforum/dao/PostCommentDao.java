@@ -29,11 +29,11 @@ public class PostCommentDao implements PostCommentRepository{
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<PostComment> getAllCommentsByPostId(Long postId) {
+	public List<PostComment> getAllCommentsWithUserIdByPostId(Long postId) {
 		List<PostComment> comments = null;
 		
 		Query query = entityManager.createNativeQuery(
-				"SELECT * FROM postcomment as pc " +
+				"SELECT pc.id, pc.content, pc.date, pc.idUser FROM postcomment as pc " +
 				"WHERE pc.idPost=:postId " +
 				"ORDER BY pc.date DESC ");
 		query.setParameter("postId", postId);
@@ -50,9 +50,10 @@ public class PostCommentDao implements PostCommentRepository{
 		for(Object[] comment : commentsByPostId){	
 			mappedComments.add(
 					new PostComment(
-							((BigInteger)comment[0]).longValue(),
+							((BigInteger) comment[0]).longValue(),
 							(String) comment[1],
-							(Timestamp) comment[2]));
+							(Timestamp) comment[2],
+							((BigInteger) comment[3]).longValue()));
 		}
 		
 		return mappedComments;

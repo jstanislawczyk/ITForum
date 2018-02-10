@@ -42,6 +42,15 @@ public class User {
 	
 	@OneToMany(mappedBy = "user")
 	private List<ForumPost> posts;
+	
+	@OneToMany(mappedBy = "user")
+	private List<PostComment> comments;
+
+	public User() {}
+
+	public User(Long id) {
+		this.id = id;
+	}
 
 	@Override
 	public String toString() {

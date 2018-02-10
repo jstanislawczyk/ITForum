@@ -68,11 +68,15 @@
 						Comments
 					</div>
 					<div class="content">					
-						<th:block th:if="${not #lists.isEmpty(comments)}" th:each="comment : ${comments}" >
+						<th:block th:if="${not #lists.isEmpty(comments)}" th:each="comment, iterator : ${comments}">
 							<div class="contentField">
-								<span class="commentDate" th:text="${comment.date}"></span><br />
+								<span class="commentInfo">Commented on</span>
+								<span class="commentInfo" th:text="${comment.date}"></span>
+								<span class="commentInfo">by</span>
+								<a th:href="@{/profile/}+${nicknames[iterator.index]}"><span class="commentUserNick" th:text="${nicknames[iterator.index]}"></span></a><br />
+								
 								<hr width="95%" />
-							    <span class="commentContent" th:text="${comment.content}"></span><br />  	
+							    <span class="commentContent" th:text="${comment.content}"></span><br /> > 	
 							</div>   				    	
 						</th:block>
 					</div>
