@@ -10,6 +10,8 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -57,7 +59,7 @@ public class PostController {
 			validCommentErrors(redirectAttributes, postId);
 		}
 		
-		saveCommentToDatabase(comment, postId);
+		saveCommentToDatabase(comment, postId, getCommentingUser());
 		setPostProperties(postId, model);
 		return "forumPostPage";
 	}
@@ -135,13 +137,21 @@ public class PostController {
 		return "redirect:/post/{postId}";
 	}
 	
-	private void saveCommentToDatabase(PostComment comment, Long postId){
-		comment = setPropertiesOfComment(comment, postId);
+	private User getCommentingUser(){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String nick = auth.getName();
+	    
+		return userRepository.getUserByNick(nick);
+	}
+	
+	private void saveCommentToDatabase(PostComment comment, Long postId, User user){
+		comment = setPropertiesOfComment(comment, postId, user);
 		postCommentRepository.saveComment(comment);
 	}
 	
-	private PostComment setPropertiesOfComment(PostComment comment, Long postId){
+	private PostComment setPropertiesOfComment(PostComment comment, Long postId, User user){
 		comment.setDate(getCurrentDate());
+		comment.setUser(user);
 		comment.setPost(findPostById(postId));
 		
 		return comment;
