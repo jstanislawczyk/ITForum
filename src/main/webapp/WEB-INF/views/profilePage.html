@@ -10,7 +10,7 @@
 	</head>
 	
 	<body>
-		<div>
+		<div class="container">
 			<div class="banner">
 				<a class="title" th:href="@{/}">ITForum</a>
 				<div sec:authorize="hasAuthority('ADMIN')" class="bannerButtons"><a th:href="@{/admin}">Admin</a></div>
@@ -20,8 +20,9 @@
 				<div style="clear: both;"></div>
 			</div>
 			
-			<span th:text="${user.nick}">Nazwa uzytkownika: </span>
-			
+			<div class="container">
+				<span th:text="${user.nick}">Nazwa uzytkownika: </span>
+			</div>	
 			<div class="footer">
 				<span class="footerText"><a th:href="@{/contact}">Contact us</a></span>
 				<span class="footerText"><a th:href="@{/rules}">Rules</a></span>

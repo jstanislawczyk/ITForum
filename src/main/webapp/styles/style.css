@@ -22,6 +22,12 @@ textarea{
 	width:95%;
 }
 
+.container{
+	display: flex;
+	flex-direction: column;
+	height: 100vh;
+}
+
 .banner{
 	background-color: #3c3c3c;
 	width: 100%;
@@ -49,6 +55,7 @@ textarea{
 }
 
 .main{
+	flex-grow: 1;
 	width: 100%;
 	border-bottom: 2px solid #cecece;
 }
