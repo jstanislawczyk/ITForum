@@ -24,12 +24,23 @@ public class ProfileController {
 	
 	@RequestMapping(value = "/profile/{nick}", method = GET)
 	public String showUserProfile(@PathVariable String nick, Model model) {
-		User user = null;
-		user = userRepository.getUserByNick(nick);
-		if(user == null){
-			throw new PageNotFoundException();
-		}
+		User user = findUserOrThrowPageNotFoundError(nick);
+		
 		model.addAttribute(user);
 		return "profilePage";
+	}
+	
+	private User findUserOrThrowPageNotFoundError(String nick){		
+		User user = getUserByNick(nick);
+		
+		if(user == null){
+			throw new PageNotFoundException();
+		}else{
+			return user;
+		}
+	}
+	
+	private User getUserByNick(String nick){
+		return userRepository.getUserByNick(nick);
 	}
 }

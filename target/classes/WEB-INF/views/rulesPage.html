@@ -13,15 +13,16 @@
 		<div class="container">
 			<div class="banner">
 				<a class="title" th:href="@{/}">ITForum</a>
-				<div sec:authorize="hasAuthority('ADMIN')" class="bannerButtons"><a th:href="@{/admin}">Admin</a></div>
-				<div sec:authorize="isAnonymous()" class="bannerButtons"><a th:href="@{/register}">Register</a></div>
-				<div sec:authorize="hasAnyAuthority('USER','ADMIN')" class="bannerButtons"><a th:href="@{/post/createNewPost}">Create post</a></div>
-				<div sec:authorize="isAnonymous()" class="bannerButtons"><a th:href="@{/login}">Login</a></div>
 				<div sec:authorize="isAuthenticated()" class="bannerButtons">
 					<form th:action="@{/logout}" method="post">
     					<input class="button" type="submit" value="Logout">
 					</form>
 				</div>
+				<div sec:authorize="hasAuthority('ADMIN')" class="bannerButtons"><a th:href="@{/admin}">Admin panel</a></div>
+				<div sec:authorize="hasAnyAuthority('USER','ADMIN')" class="bannerButtons"><a th:href="@{/post/createNewPost}">Create post</a></div>
+				<div sec:authorize="isAnonymous()" class="bannerButtons"><a th:href="@{/register}">Register</a></div>
+				<div sec:authorize="isAnonymous()" class="bannerButtons"><a th:href="@{/login}">Login</a></div>
+				<div sec:authorize="isAuthenticated()" class="bannerButtons"><a th:href="@{/profile/}+${#authentication.name}" th:text="${#authentication.name}"></a></div>
 			</div>
 			
 			<div class="infoSection">

@@ -474,3 +474,15 @@ a{
 	color: #000000;
 	font-size: 15px;
 }
+
+.userDetail{
+	display: inline-block;
+	margin-left: 50px;
+	margin-bottom: 10px;
+	font-size: 20px;
+	min-width: 100px;
+}
+
+.userDetail:FIRST-CHILD {
+	margin-top:20px;
+}
