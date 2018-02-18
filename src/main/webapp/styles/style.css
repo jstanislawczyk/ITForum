@@ -486,3 +486,9 @@ a{
 .userDetail:FIRST-CHILD {
 	margin-top:20px;
 }
+
+.commentError{
+	margin-top: 10px;
+	margin-left: 50px;
+	margin-bottom: 10px;
+}

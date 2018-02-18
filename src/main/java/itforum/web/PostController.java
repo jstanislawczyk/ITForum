@@ -17,7 +17,6 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import itforum.entities.ForumPost;
 import itforum.entities.PostComment;
@@ -52,11 +51,10 @@ public class PostController {
 				@PathVariable Long postId, 
 				@Valid PostComment comment,
 				BindingResult result,
-				Model model,
-				RedirectAttributes redirectAttributes){		
+				Model model){		
 			
 		if (result.hasErrors()) {
-			validCommentErrors(redirectAttributes, postId);
+			return handleCommentErrors(postId, model);
 		}
 		
 		saveCommentToDatabase(comment, postId, getCommentingUser());
@@ -132,9 +130,15 @@ public class PostController {
 		return new Timestamp(System.currentTimeMillis());
 	}
 	
-	private String validCommentErrors(RedirectAttributes redirectAttributes, Long postId){
-		redirectAttributes.addFlashAttribute("postId", postId);
-		return "redirect:/post/{postId}";
+	private String handleCommentErrors(Long postId, Model model){
+		setPostProperties(postId, model);
+		model = setCommentValidationError(model);
+		
+		return "forumPostPage";
+	}
+	
+	private Model setCommentValidationError(Model model){
+		return model.addAttribute("commentValidationError", "Comment must be 5 to 300 letters long");
 	}
 	
 	private User getCommentingUser(){
