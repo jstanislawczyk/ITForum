@@ -12,7 +12,7 @@
   8. Maven - build automation tool
   9. Tomcat - application container
   
-  How to run?
+# How to run?
   1. Create WAR file
   2. Copy WAR file to Tomcat container (e.g. /Tomcat/webapps/ITForum.WAR)
   3. Create 'itforum' database on MySQL server (on localhost/127.0.0.1)
@@ -20,3 +20,6 @@
   5. Run Tomcat
   6. You can access ITForum in 'localhost:8080/itforum' address
   7. If you want to create admin, you need to register normal user then change role manually in MySQL to 'ADMIN'
+  
+# Preview
+![preview](https://user-images.githubusercontent.com/31374669/36448072-ab75ed2e-1686-11e8-8df1-3151df437acc.JPG)
