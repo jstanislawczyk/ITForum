@@ -71,4 +71,9 @@ public class UserRepositoryDao implements UserRepository{
 		Long numberOfUsers = (Long) entityManager.createQuery("SELECT COUNT(*) from User u").getSingleResult();
 		return numberOfUsers;
 	}
+
+	@Override
+	public User update(User user) {
+		return entityManager.merge(user);
+	}
 }

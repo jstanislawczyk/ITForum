@@ -9,5 +9,6 @@ public interface UserRepository{
 	 boolean isNickAvailable(String nick);
 	 boolean isEmailAvailable(String email);
 	 void saveUser(User user);
+	 User update(User user);
 	 Long countUsers();
 }

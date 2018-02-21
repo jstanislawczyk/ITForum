@@ -33,6 +33,8 @@ public class PostController {
 	private PostCommentRepository postCommentRepository;
 	private UserRepository userRepository;
 	
+	private final int pointsForComment = 10;
+	
 	@Autowired
 	public PostController(ForumPostRepository forumPostRepository, PostCommentRepository postCommentRepository, UserRepository userRepository){
 		this.forumPostRepository = forumPostRepository;
@@ -57,8 +59,11 @@ public class PostController {
 			return handleCommentErrors(postId, model);
 		}
 		
-		saveCommentToDatabase(comment, postId, getCommentingUser());
+		User user = getCommentingUser();
+		
+		saveCommentToDatabase(comment, postId, user);
 		setPostProperties(postId, model);
+		addPointsToUserAccount(user);
 		return "forumPostPage";
 	}
 	
@@ -159,5 +164,11 @@ public class PostController {
 		comment.setPost(findPostById(postId));
 		
 		return comment;
+	}
+	
+	private User addPointsToUserAccount(User user){
+		user.setPoints(user.getPoints()+pointsForComment);
+		user = userRepository.update(user);
+		return user;
 	}
 }

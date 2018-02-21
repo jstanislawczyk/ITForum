@@ -32,6 +32,8 @@ public class CreateNewPostController {
 	private UserRepository userRepository;
 	private ForumCategoryRepository forumCategoryRepository;
 	
+	private final int pointsForNewPost = 50;
+	
 	@Autowired
 	public CreateNewPostController(ForumPostRepository forumPostRepository, UserRepository userRepository, ForumCategoryRepository forumCategoryRepository) {
 		this.forumPostRepository = forumPostRepository;
@@ -58,16 +60,20 @@ public class CreateNewPostController {
 		if(bindingResult.hasErrors()){
 			return "createNewPostPage";
 		}else{		
-			forumPost = setForumPostDefaultValues(forumPost, forumCategory);
+			
+			User user = currentLoggedUser();
+			
+			forumPost = setForumPostDefaultValues(forumPost, forumCategory, user);
 			forumPostRepository.savePost(forumPost);
 			attributes.addAttribute("categoryTitle", getCategoryTitleById(forumCategory.getId()));
+			user = addPointsToUserAccount(user);
 			return "redirect:/category/{categoryTitle}";
 		}	
 	}
 	
-	private ForumPost setForumPostDefaultValues(ForumPost forumPost, ForumCategory forumCategory){
+	private ForumPost setForumPostDefaultValues(ForumPost forumPost, ForumCategory forumCategory, User user){
 		forumPost.setId(null);
-		forumPost.setUser(currentLoggedUser());
+		forumPost.setUser(user);
 		forumPost.setCategory(forumCategory);
 		forumPost.setDate(new Timestamp(System.currentTimeMillis()));
 		
@@ -82,5 +88,11 @@ public class CreateNewPostController {
 	private String getCategoryTitleById(Long id){
 		String title = forumCategoryRepository.findCategoryTitleById(id);
 		return title;
+	}
+	
+	private User addPointsToUserAccount(User user){
+		user.setPoints(user.getPoints()+pointsForNewPost);
+		user = userRepository.update(user);
+		return user;
 	}
 }
