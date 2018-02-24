@@ -33,6 +33,8 @@
 					<div class="content">
 						<div class="emailSection">
 							<form th:action="@{/contact}" method="POST" th:object="${email}">
+								<input type="text" th:field="*{emailAddress}" placeholder="Email address" th:class="${#fields.hasErrors('emailAddress')}? 'error' : 'text'"/>
+								<br />
 								<input type="text" th:field="*{subject}" placeholder="Subject" th:class="${#fields.hasErrors('subject')}? 'error' : 'text'"/>
 								<br />
 								<textarea rows="8" th:field="*{content}" placeholder="Email content" th:class="${#fields.hasErrors('content')}? 'errorEmailTextarea' : 'emailTextarea'"></textarea>

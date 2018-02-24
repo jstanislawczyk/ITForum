@@ -10,8 +10,8 @@ import org.springframework.mail.javamail.JavaMailSenderImpl;
 @Configuration
 public class MailConfig{
 	
-	private static final String USERNAME = "janitforum@gmail.com";
-	private static final String PASSWORD = "janittest";
+	public static final String USERNAME = "test@gmail.com";
+	private static final String PASSWORD = "test";
 	
 	@Bean
 	public JavaMailSender javaMailService() {
@@ -31,4 +31,6 @@ public class MailConfig{
 	     
 	    return mailSender;
 	}
+	
+	
 }

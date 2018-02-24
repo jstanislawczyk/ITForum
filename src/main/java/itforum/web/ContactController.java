@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import itforum.config.MailConfig;
 import itforum.entities.Email;
 
 @Controller
@@ -36,7 +37,7 @@ public class ContactController {
 			model = setErrorAttribute(model);
 			return "contactFormPage";
 		}else{
-			sendEmail(email.getSubject(), email.getContent());	
+			sendEmail(email.getEmailAddress(), email.getSubject(), email.getContent());	
 			model = setSuccessAttributes(model);
 			return "contactFormPage";
 		}
@@ -54,12 +55,12 @@ public class ContactController {
 		return model;
 	}
 	
-	private void sendEmail(String subject, String content){
+	private void sendEmail(String emailAddress, String subject, String content){
 		SimpleMailMessage message = new SimpleMailMessage();
-		message.setFrom("janitforum@gmail.com");
-		message.setTo("janitforum@gmail.com");
+		message.setFrom(emailAddress);
+		message.setTo(MailConfig.USERNAME);
 		message.setSubject(subject);
-		message.setText(content);
+		message.setText("From: "+emailAddress+"\nMessage: "+content);
 		
 		mailSender.send(message);
 	}
