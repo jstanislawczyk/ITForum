@@ -492,3 +492,36 @@ a{
 	margin-left: 50px;
 	margin-bottom: 10px;
 }
+
+.emailTextarea{
+	width: 900px;
+	background-color: #efefef;
+	color: #666;
+	border: 2px solid #ddd;
+	border-radius: 5px;
+	font-size: 17px;
+	padding: 10px;
+	box-sizing: border-box;
+	outline: none;
+	margin-top: 10px;
+}
+
+.errorEmailTextarea{
+	width: 900px;
+	background-color: #ff8080;
+	color: #800000;
+	border: 2px solid #ff0000;
+	border-radius: 5px;
+	font-size: 17px;
+	padding: 10px;
+	box-sizing: border-box;
+	outline: none;
+	margin-top: 10px;
+}
+
+.emailSection{
+	width: 100%;
+	margin-left: 50px;
+	margin-bottom: 30px;
+	overflow:auto;
+}
