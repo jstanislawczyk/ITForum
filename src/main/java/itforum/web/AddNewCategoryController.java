@@ -39,9 +39,17 @@ public class AddNewCategoryController {
 		if(bindingResult.hasErrors()){
 			return "addNewCategoryPage";
 		}else{
+			replaceAllSlashesInCategoryTitleWithBarPipe(forumCategory);
 			forumCategoryRepository.saveForumCategory(forumCategory);
 			return "adminPage";
 		}
+	}
+	
+	private ForumCategory replaceAllSlashesInCategoryTitleWithBarPipe(ForumCategory forumCategory){
+		String title = forumCategory.getTitle();
+		title = title.replaceAll("/", "|");
+		forumCategory.setTitle(title);
+		return forumCategory;
 	}
 	
 }
