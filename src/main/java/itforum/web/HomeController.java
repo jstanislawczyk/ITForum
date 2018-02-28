@@ -3,7 +3,6 @@ package itforum.web;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
 import java.util.List;
-import java.util.Objects;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -32,8 +31,8 @@ public class HomeController {
 	
 	@RequestMapping(method = GET)
 	public String home(Model model) {
-		model.addAttribute("totalPosts", Objects.toString(forumPostRepository.countPosts()));
-		model.addAttribute("totalMembers", Objects.toString(userRepository.countUsers()));
+		model.addAttribute("totalPosts", forumPostRepository.countPosts());
+		model.addAttribute("totalMembers", userRepository.countUsers());
 		
 		List<ForumCategory> categories = forumCategoryRepository.findAllCategories();
 		model.addAttribute("categories",categories);

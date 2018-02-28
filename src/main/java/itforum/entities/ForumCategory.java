@@ -66,6 +66,12 @@ public class ForumCategory {
 		this.description = description;
 		this.posts = posts;
 	}
+	
+	public ForumCategory(Long id, String title,String description) {
+		this.id = id;
+		this.title = title;
+		this.description = description;
+	}
 
 	public ForumCategory() {}
 }
