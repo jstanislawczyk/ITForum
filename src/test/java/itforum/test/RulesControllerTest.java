@@ -11,7 +11,7 @@ import itforum.web.RulesController;
 public class RulesControllerTest {
 	
 	@Test
-	public void testRulesPage() throws Exception {
+	public void shouldShowRulesPage() throws Exception {
 		RulesController rulesController = new RulesController();
 		MockMvc mockMvc = standaloneSetup(rulesController).build();
 		mockMvc.perform(get("/rules")).andExpect(view().name("rulesPage"));

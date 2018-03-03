@@ -12,7 +12,7 @@ import itforum.web.LoginController;
 public class LoginControllerTest {
 	
 	@Test
-	public void testLoginPage() throws Exception{
+	public void shouldShowLoginPage() throws Exception{
 		LoginController loginController = new LoginController();
 		MockMvc mockMvc = standaloneSetup(loginController).build();
 		mockMvc.perform(get("/login")).andExpect(view().name("loginPage"));
