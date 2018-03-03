@@ -36,7 +36,7 @@ public class HomeControllerTest {
 	}
 	
 	@Test
-	public void voidShouldLoadHomepageAttributes() throws Exception{
+	public void shouldLoadHomepageAttributes() throws Exception{
 		UserRepository mockUserRepository = mock(UserRepository.class);
 		ForumPostRepository mockForumPostRepository = mock(ForumPostRepository.class);
 		ForumCategoryRepository mockForumCategoryRepository = mock(ForumCategoryRepository.class);
