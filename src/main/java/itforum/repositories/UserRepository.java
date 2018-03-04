@@ -8,7 +8,7 @@ public interface UserRepository{
 	 User getUserByEmail(String email);
 	 boolean isNickAvailable(String nick);
 	 boolean isEmailAvailable(String email);
-	 void saveUser(User user);
+	 User saveUser(User user);
 	 User update(User user);
 	 Long countUsers();
 }

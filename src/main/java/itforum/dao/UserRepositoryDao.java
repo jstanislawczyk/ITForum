@@ -23,8 +23,8 @@ public class UserRepositoryDao implements UserRepository{
 	}
 
 	@Override
-	public void saveUser(User user) {
-		entityManager.merge(user);	
+	public User saveUser(User user) {
+		return entityManager.merge(user);	
 	}
 
 	@Override

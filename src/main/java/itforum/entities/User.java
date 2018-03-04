@@ -55,6 +55,53 @@ public class User {
 		this.nick = nick;
 		this.password = password;
 	}
+	
+	public User(String nick, String email, String password){
+		this.nick = nick;
+		this.password = password;
+		this.email = email;
+	}
+	
+	public User(Long id, String nick, String email, String password){
+		this.id = id;
+		this.nick = nick;
+		this.password = password;
+		this.email = email;
+	}
+
+	public User(String nick, String password, String email, Timestamp date,
+			int points, String role, boolean enabled) {
+		this.nick = nick;
+		this.password = password;
+		this.email = email;
+		this.date = date;
+		this.points = points;
+		this.role = role;
+		this.enabled = enabled;
+	}
+	
+	public User(Long id, String nick, String password, String email, Timestamp date,
+			int points, String role, boolean enabled) {
+		this.id = id;
+		this.nick = nick;
+		this.password = password;
+		this.email = email;
+		this.date = date;
+		this.points = points;
+		this.role = role;
+		this.enabled = enabled;
+	}
+	
+	public User(Long id, String nick, String password, String email,
+			int points, String role, boolean enabled) {
+		this.id = id;
+		this.nick = nick;
+		this.password = password;
+		this.email = email;
+		this.points = points;
+		this.role = role;
+		this.enabled = enabled;
+	}
 
 	@Override
 	public String toString() {
