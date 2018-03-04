@@ -83,4 +83,10 @@ public class ForumPost extends Post {
 		super(id, content, date);
 		this.title = title;
 	}
+	
+	public ForumPost(Long id, String title,  String content, Timestamp date, User user) {
+		super(id, content, date);
+		this.title = title;
+		this.user = user;
+	}
 }

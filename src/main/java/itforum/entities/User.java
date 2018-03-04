@@ -13,8 +13,6 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-
-
 @Entity
 public class User {
 	
@@ -50,6 +48,12 @@ public class User {
 
 	public User(Long id) {
 		this.id = id;
+	}
+	
+	public User(Long id, String nick, String password){
+		this.id = id;
+		this.nick = nick;
+		this.password = password;
 	}
 
 	@Override
