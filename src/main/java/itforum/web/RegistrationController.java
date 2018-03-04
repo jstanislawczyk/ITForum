@@ -21,14 +21,14 @@ import itforum.repositories.UserRepository;
 @Controller
 public class RegistrationController{
 	
-	@Autowired
 	private PasswordEncoder passwordEncoder;
 	
 	private final UserRepository userRepository;
 	
 	@Autowired
-	public RegistrationController(UserRepository userRepository) {
+	public RegistrationController(UserRepository userRepository, PasswordEncoder passwordEncoder) {
 		this.userRepository = userRepository;
+		this.passwordEncoder = passwordEncoder;
 	}
 	
 	@RequestMapping(path = "/register", method=GET)
@@ -54,10 +54,8 @@ public class RegistrationController{
 			user = setStartValuesForUser(user);
 			user.setPassword(passwordEncoder.encode(user.getPassword()));
 			userRepository.saveUser(user);
-			
-			attrubites.addAttribute("nick", user.getNick());
-			attrubites.addFlashAttribute("user", user);
-			return "redirect:/profile/{nick}";
+
+			return "redirect:/profile/"+user.getNick();
 		}
 	}
 	
