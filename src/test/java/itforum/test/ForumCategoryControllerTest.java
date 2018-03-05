@@ -6,13 +6,14 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
-import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standaloneSetup;
 
 import java.sql.Timestamp;
 import java.util.LinkedList;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import itforum.entities.ForumCategory;
 import itforum.entities.ForumPost;
@@ -23,17 +24,27 @@ import itforum.web.ForumCategoryController;
 
 public class ForumCategoryControllerTest {
 	
+	private MockMvc mockMvc;
+	private ForumCategoryController forumCategoryController;
+	private ForumPostRepository mockForumPostRepository;
+	private ForumCategoryRepository mockForumCategoryRepository;
+	
+	@Before
+	public void setup(){
+		mockForumPostRepository = mock(ForumPostRepository.class);
+		mockForumCategoryRepository = mock(ForumCategoryRepository.class);
+		forumCategoryController = new ForumCategoryController(mockForumPostRepository, mockForumCategoryRepository);
+		
+		mockMvc = MockMvcBuilders
+					.standaloneSetup(forumCategoryController)
+					.build();
+	}
+	
 	@Test
-	public void shouldNotFoundCategory() throws Exception{
+	public void shouldNotFoundCategory() throws Exception{	
 		String wrongCategoryTitle = "Scala";
 		
-		ForumPostRepository mockForumPostRepository = mock(ForumPostRepository.class);
-		ForumCategoryRepository mockForumCategoryRepository = mock(ForumCategoryRepository.class);
-		
 		when(mockForumCategoryRepository.checkIfCategoryExistsByTitle(wrongCategoryTitle)).thenReturn(false);
-		
-		ForumCategoryController forumCategoryController = new ForumCategoryController(mockForumPostRepository, mockForumCategoryRepository);
-		MockMvc mockMvc = standaloneSetup(forumCategoryController).build();
 		
 		mockMvc.perform(get("/category/"+wrongCategoryTitle))
 			.andExpect(status().isNotFound());
@@ -45,15 +56,9 @@ public class ForumCategoryControllerTest {
 		ForumCategory expectedForumCategory = new ForumCategory(1L, categoryTitle, "PHP category");
 		LinkedList<ForumPost> expectedForumPosts = createExpectedForumPostList(10);
 		
-		ForumPostRepository mockForumPostRepository = mock(ForumPostRepository.class);
-		ForumCategoryRepository mockForumCategoryRepository = mock(ForumCategoryRepository.class);
-		
 		when(mockForumCategoryRepository.findCategoryByTitle(categoryTitle)).thenReturn(expectedForumCategory);
 		when(mockForumPostRepository.findAllPostsByCategorySortByNewest(categoryTitle)).thenReturn(expectedForumPosts);
 		when(mockForumCategoryRepository.checkIfCategoryExistsByTitle(categoryTitle)).thenReturn(true);
-		
-		ForumCategoryController forumCategoryController = new ForumCategoryController(mockForumPostRepository, mockForumCategoryRepository);
-		MockMvc mockMvc = standaloneSetup(forumCategoryController).build();
 		
 		mockMvc.perform(get("/category/"+categoryTitle))
 			.andExpect(view().name("categoryPage"))

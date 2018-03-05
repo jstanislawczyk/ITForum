@@ -6,14 +6,15 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
-import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standaloneSetup;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import itforum.entities.ForumPost;
 import itforum.entities.PostComment;
@@ -23,11 +24,25 @@ import itforum.repositories.PostCommentRepository;
 import itforum.repositories.UserRepository;
 import itforum.web.PostController;
 
-public class TestPostController {
+public class PostControllerTest {
 	
-	ForumPostRepository mockForumPostRepository = mock(ForumPostRepository.class);
-	PostCommentRepository mockPostCommentRepository = mock(PostCommentRepository.class);
-	UserRepository mockUserRepository = mock(UserRepository.class);
+	private MockMvc mockMvc;
+	private PostController postController;
+	private ForumPostRepository mockForumPostRepository;
+	private PostCommentRepository mockPostCommentRepository;
+	private UserRepository mockUserRepository;
+	
+	@Before
+	public void setup(){
+		mockForumPostRepository = mock(ForumPostRepository.class);
+		mockPostCommentRepository = mock(PostCommentRepository.class);
+		mockUserRepository = mock(UserRepository.class);
+		postController = new PostController(mockForumPostRepository, mockPostCommentRepository, mockUserRepository);
+		
+		mockMvc = MockMvcBuilders
+						.standaloneSetup(postController)
+						.build();
+	}
 	
 	@Test
 	public void shouldNotFoundPageIfPostDoesNotExists() throws Exception{
@@ -35,11 +50,8 @@ public class TestPostController {
 
 		when(mockForumPostRepository.findPostById(postId)).thenReturn(null);
 		
-		PostController postController = new PostController(mockForumPostRepository, mockPostCommentRepository, mockUserRepository);
-		MockMvc mockMvc = standaloneSetup(postController).build();
-		
 		mockMvc.perform(get("/post/"+postId))
-				.andExpect(status().isNotFound());
+					.andExpect(status().isNotFound());
 	}
 	
 	@Test
@@ -53,9 +65,6 @@ public class TestPostController {
 		when(mockPostCommentRepository.getAllCommentsWithUserIdByPostId(postId)).thenReturn(expectedComments);
 		when(mockUserRepository.getUserById(1L)).thenReturn(expectedUser);
 		when(mockForumPostRepository.findPostById(postId)).thenReturn(expectedForumPost);
-		
-		PostController postController = new PostController(mockForumPostRepository, mockPostCommentRepository, mockUserRepository);
-		MockMvc mockMvc = standaloneSetup(postController).build();
 		
 		mockMvc.perform(get("/post/"+postId))
 				.andExpect(view().name("forumPostPage"))
