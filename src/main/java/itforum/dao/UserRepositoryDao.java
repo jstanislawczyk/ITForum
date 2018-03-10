@@ -1,5 +1,7 @@
 package itforum.dao;
 
+import java.sql.Timestamp;
+
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
@@ -25,6 +27,20 @@ public class UserRepositoryDao implements UserRepository{
 	@Override
 	public User saveUser(User user) {
 		return entityManager.merge(user);	
+	}
+	
+	public void disableUser(User user) {
+		entityManager.createNativeQuery(
+						"UPDATE user SET "+
+						"date='"+new Timestamp(System.currentTimeMillis())+"', "+
+						"email='deleted@deleted.com', "+
+						"enabled=0, "+
+						"password='-------------', "+
+						"points=0, "+
+						"role='DELETED' "+
+						"WHERE id=:id")
+					.setParameter("id", user.getId())
+					.executeUpdate();
 	}
 
 	@Override

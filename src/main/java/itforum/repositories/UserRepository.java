@@ -10,5 +10,6 @@ public interface UserRepository{
 	 boolean isEmailAvailable(String email);
 	 User saveUser(User user);
 	 User update(User user);
+	 void disableUser(User user);
 	 Long countUsers();
 }
