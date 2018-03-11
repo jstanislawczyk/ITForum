@@ -243,6 +243,24 @@ form{
 	background-color: #e43a3a;
 }
 
+.smallRedButton{
+	height: 30px;
+	width: 100px;
+	background-color: #f54b4b;
+	color: #FFF;
+	border: 1px solid #e43a3a;
+	font-size: 18px;
+	cursor: pointer;
+	border-radius: 2px;
+	margin-top: 20px;
+	margin-left: 10px;
+	margin-bottom: 20px;
+}
+
+.smallRedButton:hover{
+	background-color: #e43a3a;
+}
+
 #remember_me{
 	margin-top: 15px;
 }

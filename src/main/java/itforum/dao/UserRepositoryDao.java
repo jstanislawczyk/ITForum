@@ -29,6 +29,7 @@ public class UserRepositoryDao implements UserRepository{
 		return entityManager.merge(user);	
 	}
 	
+	@Override
 	public void disableUser(User user) {
 		entityManager.createNativeQuery(
 						"UPDATE user SET "+
@@ -40,6 +41,21 @@ public class UserRepositoryDao implements UserRepository{
 						"role='DELETED' "+
 						"WHERE id=:id")
 					.setParameter("id", user.getId())
+					.executeUpdate();
+	}
+	
+	@Override
+	public void disableUserByNick(String nick) {
+		entityManager.createNativeQuery(
+						"UPDATE user SET "+
+						"date='"+new Timestamp(System.currentTimeMillis())+"', "+
+						"email='deleted@deleted.com', "+
+						"enabled=0, "+
+						"password='-------------', "+
+						"points=0, "+
+						"role='DELETED' "+
+						"WHERE nick=:nick")
+					.setParameter("nick", nick)
 					.executeUpdate();
 	}
 

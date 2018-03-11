@@ -11,5 +11,6 @@ public interface UserRepository{
 	 User saveUser(User user);
 	 User update(User user);
 	 void disableUser(User user);
+	 void disableUserByNick(String nick);
 	 Long countUsers();
 }
