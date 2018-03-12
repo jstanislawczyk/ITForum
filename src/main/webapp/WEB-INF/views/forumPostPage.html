@@ -83,6 +83,7 @@
 							    <span class="commentContent" th:text="${comment.content}"></span><br /> 
 							    > 	
 							    <a sec:authorize="hasAnyAuthority('ADMIN')"  th:href="@{/admin/ban/}+${nicknames[iterator.index]}"><button class="smallRedButton">ban</button></a>
+							    <a sec:authorize="hasAnyAuthority('ADMIN')"  th:href="@{/admin/deleteComment/}+${post.id}+'/'+${comment.id}"><button class="smallRedButton">delete</button></a>
 								<br />
 							</div>   				    	
 						</th:block>

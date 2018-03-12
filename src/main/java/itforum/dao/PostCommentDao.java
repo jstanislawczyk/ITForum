@@ -44,6 +44,15 @@ public class PostCommentDao implements PostCommentRepository{
 		return comments;
 	}
 	
+	@Override
+	public void deletePostById(Long postId) {
+		entityManager.createNativeQuery(
+				"DELETE FROM itforum.postcomment WHERE id=:commentId")
+		.setParameter("commentId", postId)
+		.executeUpdate();
+		
+	}
+	
 	private List<PostComment> mapToCommentsList(List<Object[]> commentsByPostId){
 		List<PostComment> mappedComments = new LinkedList<PostComment>();
 		

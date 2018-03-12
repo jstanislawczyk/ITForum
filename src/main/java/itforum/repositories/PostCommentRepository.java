@@ -7,4 +7,5 @@ import itforum.entities.PostComment;
 public interface PostCommentRepository{
 	void saveComment(PostComment comment);
 	List<PostComment> getAllCommentsWithUserIdByPostId(Long postId);
+	void deletePostById(Long postId);
 }

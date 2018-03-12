@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import itforum.entities.User;
+import itforum.repositories.PostCommentRepository;
 import itforum.repositories.UserRepository;
 
 
@@ -19,10 +20,18 @@ import itforum.repositories.UserRepository;
 public class AdminActionsController {
 
 	private UserRepository userRepository;
+	private PostCommentRepository postCommentRepository;
 	
 	@Autowired
-	public AdminActionsController(UserRepository userRepository) {
+	public AdminActionsController(UserRepository userRepository, PostCommentRepository postCommentRepository) {
 		this.userRepository = userRepository;
+		this.postCommentRepository = postCommentRepository;
+	}
+	
+	@RequestMapping(value = "/admin/deleteComment/{postId}/{commentId}", method = GET)
+	public String deleteComment(@PathVariable Long postId, @PathVariable Long commentId){
+		postCommentRepository.deletePostById(commentId);
+		return "redirect:/post/"+postId;
 	}
 	
 	@RequestMapping(value = "/admin/ban/{userNick}", method = GET)
