@@ -37,7 +37,6 @@ public class AdminActionsController {
 	@RequestMapping(value = "/admin/ban/{userNick}", method = GET)
 	public String banUser(@PathVariable String userNick){
 		disableUser(userNick);
-		logOffDisabledUser();
 		return "redirect:/";
 	}
 	
@@ -56,9 +55,5 @@ public class AdminActionsController {
 	
 	private User getUserByNick(String nick){
 		return userRepository.getUserByNick(nick);
-	}
-	
-	private void logOffDisabledUser(){
-		SecurityContextHolder.clearContext();
 	}
 }
