@@ -1,4 +1,4 @@
-package itforum.dao;
+package itforum.repositories_implementation;
 
 import java.math.BigInteger;
 import java.sql.Timestamp;
@@ -17,7 +17,7 @@ import itforum.repositories.PostCommentRepository;
 
 @Repository
 @Transactional
-public class PostCommentDao implements PostCommentRepository{
+public class PostCommentRepositoryImpl implements PostCommentRepository{
 	
 	@PersistenceContext
 	private EntityManager entityManager;

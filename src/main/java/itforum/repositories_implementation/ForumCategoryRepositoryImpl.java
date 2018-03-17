@@ -1,4 +1,4 @@
-package itforum.dao;
+package itforum.repositories_implementation;
 
 import java.util.List;
 
@@ -14,7 +14,7 @@ import itforum.repositories.ForumCategoryRepository;
 
 @Repository
 @Transactional
-public class ForumCategoryDao implements ForumCategoryRepository{
+public class ForumCategoryRepositoryImpl implements ForumCategoryRepository{
 	
 	@PersistenceContext
 	private EntityManager entityManager;
