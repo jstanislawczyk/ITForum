@@ -344,12 +344,14 @@ a{
 }
 
 .adminButton{
-	width: 150px;
+	width: 170px;
+	height: 70px;
 	background-color: #3c3c3c;
 	font-size:15px;
 	color: white;
 	padding: 15px 10px;
 	margin-top: 20px;
+	margin-left: 30px;
 	border: none;
 	border-radius: 5px;
 	cursor: pointer;

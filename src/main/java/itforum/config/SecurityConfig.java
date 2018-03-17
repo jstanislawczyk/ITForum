@@ -40,6 +40,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 					.antMatchers("/admin","/admin/addNewCategory").hasAuthority("ADMIN")
 					.antMatchers("/admin/ban/{userNick}").hasAuthority("ADMIN")
 					.antMatchers("/admin/deleteComment/{commentId}").hasAuthority("ADMIN")
+					.antMatchers("/admin/listOfUsers").hasAuthority("ADMIN")
 					.antMatchers("/post/createNewPost").hasAnyAuthority("USER","ADMIN")
 					.antMatchers("/profile/delete").hasAnyAuthority("USER","ADMIN")
 					.antMatchers("/profile/").anonymous()

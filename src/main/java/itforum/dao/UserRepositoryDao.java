@@ -1,6 +1,7 @@
 package itforum.dao;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
@@ -76,16 +77,27 @@ public class UserRepositoryDao implements UserRepository{
 				.setParameter("email", email)
 				.getSingleResult();
 	}
+	
+	@Override
+	public List<User> getAllActiveUsers() {
+		List<User> users = entityManager
+				.createQuery("SELECT u FROM User u WHERE u.role = 'USER' OR u.role = 'ADMIN' ORDER BY u.role ASC", User.class)
+				.getResultList();
+
+		return users;
+	}
 
 	@Override
 	public boolean isNickAvailable(String nick) {
-		Long numberOfUsersByNick = (Long) entityManager.createQuery("SELECT COUNT(*) from User u WHERE u.nick = :nick").setParameter("nick", nick).getSingleResult();
+		Long numberOfUsersByNick = (Long) entityManager
+				.createQuery("SELECT COUNT(*) from User u WHERE u.nick = :nick")
+				.setParameter("nick", nick)
+				.getSingleResult();
 		if(numberOfUsersByNick==0){
 			return true;
 		}else{
 			return false;
 		}
-
 	}
 
 	@Override

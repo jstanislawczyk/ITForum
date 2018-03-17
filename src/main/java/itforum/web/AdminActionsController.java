@@ -3,10 +3,13 @@ package itforum.web;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -34,10 +37,20 @@ public class AdminActionsController {
 		return "redirect:/post/"+postId;
 	}
 	
+	@RequestMapping(value = "/admin/listOfUsers")
+	public String showListOfUsers(Model model){
+		model.addAttribute("users", getListOfActiveUsers());
+		return "listOfUsersPage";
+	}
+	
 	@RequestMapping(value = "/admin/ban/{userNick}", method = GET)
 	public String banUser(@PathVariable String userNick){
 		disableUser(userNick);
-		return "redirect:/";
+		return "redirect:/admin/listOfUsers";
+	}
+	
+	private List<User> getListOfActiveUsers(){
+		return userRepository.getAllActiveUsers();
 	}
 	
 	private void disableUser(String nick){
