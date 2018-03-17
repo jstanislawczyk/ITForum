@@ -36,7 +36,7 @@
 						<input type="text" th:field="*{title}" placeholder="title" th:class="${#fields.hasErrors('title')}? 'error' : 'text'"/>
 						<textarea rows="4" th:field="*{content}" placeholder="content" th:class="${#fields.hasErrors('content')}? 'error' : 'text'"></textarea>
 							
-						<input class="submit" type="submit" value = "Save category"/>
+						<input class="submit" type="submit" value = "Create post"/>
 							
 						<ul class="errors">
 							<li th:each="err : ${#fields.errors('*')}" th:text="${err}">Validation error</li>	
