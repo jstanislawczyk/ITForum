@@ -59,7 +59,7 @@ public class PostControllerTest {
 		Long postId = 14L;
 		List<PostComment> expectedComments = createExpectedCommentsList(7);
 		List<String> expectedNicknames= createExpectedUsersNicknamesList(7);	
-		User expectedUser = new User(1L, "ExpectedUser", "useruser");	
+		User expectedUser = new User.Builder().id(1L).nick("ExpectedUser").password("useruser").build();
 		ForumPost expectedForumPost = new ForumPost(postId, "test", "test content", new Timestamp(System.currentTimeMillis()), expectedUser);
 		
 		when(mockPostCommentRepository.getAllCommentsWithUserIdByPostId(postId)).thenReturn(expectedComments);

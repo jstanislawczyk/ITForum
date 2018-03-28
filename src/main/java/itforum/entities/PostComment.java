@@ -46,7 +46,10 @@ public class PostComment extends Post{
 
 	public PostComment(Long id, String content, Timestamp date, Long userId) {
 		super(id, content, date);
-		this.user= new User(userId);
+		this.user= new User
+					.Builder()
+					.id(userId)
+					.build();
 	}
 
 	public PostComment(Long id,

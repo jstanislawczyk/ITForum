@@ -44,63 +44,17 @@ public class User {
 	@OneToMany(mappedBy = "user")
 	private List<PostComment> comments;
 
-	public User() {}
-
-	public User(Long id) {
-		this.id = id;
-	}
+	public User(){}
 	
-	public User(Long id, String nick, String password){
-		this.id = id;
-		this.nick = nick;
-		this.password = password;
-	}
-	
-	public User(String nick, String email, String password){
-		this.nick = nick;
-		this.password = password;
-		this.email = email;
-	}
-	
-	public User(Long id, String nick, String email, String password){
-		this.id = id;
-		this.nick = nick;
-		this.password = password;
-		this.email = email;
-	}
-
-	public User(String nick, String password, String email, Timestamp date,
-			int points, String role, boolean enabled) {
-		this.nick = nick;
-		this.password = password;
-		this.email = email;
-		this.date = date;
-		this.points = points;
-		this.role = role;
-		this.enabled = enabled;
-	}
-	
-	public User(Long id, String nick, String password, String email, Timestamp date,
-			int points, String role, boolean enabled) {
-		this.id = id;
-		this.nick = nick;
-		this.password = password;
-		this.email = email;
-		this.date = date;
-		this.points = points;
-		this.role = role;
-		this.enabled = enabled;
-	}
-	
-	public User(Long id, String nick, String password, String email,
-			int points, String role, boolean enabled) {
-		this.id = id;
-		this.nick = nick;
-		this.password = password;
-		this.email = email;
-		this.points = points;
-		this.role = role;
-		this.enabled = enabled;
+	public User(final Builder builder){
+		this.id = builder.id;
+		this.nick = builder.nick;
+		this.password = builder.password;
+		this.email = builder.email;
+		this.date = builder.date;
+		this.points = builder.points;
+		this.role = builder.role;
+		this.enabled = builder.enabled;
 	}
 
 	@Override
@@ -179,5 +133,60 @@ public class User {
 
 	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;
+	}
+	
+	public static class Builder{
+		private Long id;	
+		private String nick;
+		private String password;
+		private String email;
+		private Timestamp date;
+		private int points;
+		private String role;
+		private boolean enabled;
+		
+		public Builder id(final Long id){
+			this.id = id;
+			return this;
+		}
+		
+		public Builder nick(final String nick){
+			this.nick = nick;
+			return this;
+		}
+		
+		public Builder password(final String password){
+			this.password = password;
+			return this;
+		}
+		
+		public Builder email(final String email){
+			this.email = email;
+			return this;
+		}
+		
+		public Builder date(final Timestamp date){
+			this.date = date;
+			return this;
+		}
+		
+		public Builder points(final int points){
+			this.points = points;
+			return this;
+		}
+		
+		public Builder role(final String role){
+			this.role = role;
+			return this;
+		}
+		
+		public Builder enabled(final boolean enabled){
+			this.enabled = enabled;
+			return this;
+		}
+		
+		public User build(){
+			return new User(this);
+		}
 	}
 }

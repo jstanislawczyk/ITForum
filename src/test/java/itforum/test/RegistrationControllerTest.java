@@ -46,8 +46,28 @@ public class RegistrationControllerTest {
 	@Test
 	public void shouldProcessRegistration() throws Exception{
 		
-		User unsavedUser = new User("sampleUser", "test@gmail.com", "password", new Timestamp(System.currentTimeMillis()), 0, "USER", true);
-		User savedUser = new User(1L, "sampleUser", "password", "test@gmail.com", new Timestamp(System.currentTimeMillis()), 0, "USER", true);
+		User unsavedUser = new User
+				.Builder()
+				.nick("sampleUser")
+				.email("test@gmail.com")
+				.password("password")
+				.date(new Timestamp(System.currentTimeMillis()))
+				.points(0)
+				.role("USER")
+				.enabled(true)
+				.build();
+		
+		User savedUser = new User
+				.Builder()
+				.id(1L)
+				.nick("sampleUser")
+				.email("test@gmail.com")
+				.password("password")
+				.date(new Timestamp(System.currentTimeMillis()))
+				.points(0)
+				.role("USER")
+				.enabled(true)
+				.build();
 		
 		when(mockUserRepository.saveUser(unsavedUser)).thenReturn(savedUser);
 		when(mockUserRepository.isEmailAvailable(unsavedUser.getEmail())).thenReturn(true);
@@ -64,7 +84,16 @@ public class RegistrationControllerTest {
 	@Test
 	public void shouldFailRegistrationWhenEmailIsNotAvailable() throws Exception{
 		
-		User unsavedUser = new User("sampleUser", "test@gmail.com", "password", new Timestamp(System.currentTimeMillis()), 0, "USER", true);
+		User unsavedUser = new User
+				.Builder()
+				.nick("sampleUser")
+				.email("test@gmail.com")
+				.password("password")
+				.date(new Timestamp(System.currentTimeMillis()))
+				.points(0)
+				.role("USER")
+				.enabled(true)
+				.build();
 		
 		when(mockUserRepository.isEmailAvailable(unsavedUser.getEmail())).thenReturn(false);
 		when(mockUserRepository.isNickAvailable(unsavedUser.getNick())).thenReturn(true);
@@ -80,7 +109,16 @@ public class RegistrationControllerTest {
 	@Test
 	public void shouldFailRegistrationWhenNickIsNotAvailable() throws Exception{
 		
-		User unsavedUser = new User("sampleUser", "test@gmail.com", "password", new Timestamp(System.currentTimeMillis()), 0, "USER", true);
+		User unsavedUser = new User
+				.Builder()
+				.nick("sampleUser")
+				.email("test@gmail.com")
+				.password("password")
+				.date(new Timestamp(System.currentTimeMillis()))
+				.points(0)
+				.role("USER")
+				.enabled(true)
+				.build();
 		
 		when(mockUserRepository.isEmailAvailable(unsavedUser.getEmail())).thenReturn(true);
 		when(mockUserRepository.isNickAvailable(unsavedUser.getNick())).thenReturn(false);
